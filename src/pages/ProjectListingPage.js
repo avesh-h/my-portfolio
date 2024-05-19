@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Typography, Grid, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import projectsData from "../json/projectsData.json";
+import MuiHeading from "../components/mui/MuiHeading";
 
 const styles = {
   cardContainer: {
@@ -19,9 +20,7 @@ const styles = {
 const ProjectListingPage = () => {
   return (
     <Container sx={{ marginTop: "20px" }}>
-      <Typography variant="h4" color="white" gutterBottom>
-        Projects
-      </Typography>
+      <MuiHeading>Projects</MuiHeading>
       <Grid container spacing={1}>
         {projectsData.projects.map((project, index) => (
           <Grid item xs={12} key={`${project.id}-${index}`}>

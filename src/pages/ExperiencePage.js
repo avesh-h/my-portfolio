@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import MuiParagraph from "../components/mui/MuiParagraph";
+import MuiHeading from "../components/mui/MuiHeading";
 
 const Container = styled(Box)({
   minHeight: "60vh",
@@ -10,13 +12,6 @@ const Container = styled(Box)({
   justifyContent: "left",
   flexDirection: "column",
   padding: "2rem",
-});
-
-const Heading = styled(Typography)({
-  color: "#fff",
-  fontSize: "2rem",
-  fontWeight: "bold",
-  marginBottom: "1rem",
 });
 
 const ExperienceItem = styled(Box)({
@@ -40,16 +35,13 @@ const Duration = styled(Typography)({
   fontSize: "1.2rem",
 });
 
-const Description = styled(Typography)({
-  color: "#fff",
-  fontSize: "1.2rem",
-});
-
 const Responsibilities = styled("ul")({
   color: "#fff",
-  fontSize: "1.2rem",
+  fontSize: "1rem",
   listStyleType: "inside",
   paddingLeft: "1rem",
+  fontFamily: "Montserrat",
+  fontWeight: "200",
 });
 
 const ExperiencePage = () => {
@@ -69,7 +61,8 @@ const ExperiencePage = () => {
       title: "UI/UX Designer",
       company: "XYZ Corporation",
       duration: "January 2016 - April 2018",
-      description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description:
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       responsibilities: [
         "Designed user-friendly interfaces for web and mobile applications.",
         "Conducted user research and usability testing to iterate on design solutions.",
@@ -80,7 +73,8 @@ const ExperiencePage = () => {
       title: "Software Engineer",
       company: "123 Tech Solutions",
       duration: "June 2014 - December 2015",
-      description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       responsibilities: [
         "Developed and maintained backend services using Node.js and Express.js.",
         "Implemented RESTful APIs to support various client applications.",
@@ -91,7 +85,8 @@ const ExperiencePage = () => {
       title: "Web Developer Intern",
       company: "Tech Start-up",
       duration: "Summer 2013",
-      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      description:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       responsibilities: [
         "Assisted in the development of web applications using HTML, CSS, and JavaScript.",
         "Learned and applied best practices for front-end development under the guidance of senior developers.",
@@ -102,13 +97,13 @@ const ExperiencePage = () => {
 
   return (
     <Container>
-      <Heading>Experience</Heading>
+      <MuiHeading>Experience</MuiHeading>
       {experienceData.map((experience, index) => (
         <ExperienceItem key={index}>
           <JobTitle>{experience.title}</JobTitle>
           <Company>{experience.company}</Company>
           <Duration>{experience.duration}</Duration>
-          <Description>{experience.description}</Description>
+          <MuiParagraph>{experience.description}</MuiParagraph>
           <Responsibilities>
             {experience.responsibilities.map((responsibility, i) => (
               <li key={i}>{responsibility}</li>

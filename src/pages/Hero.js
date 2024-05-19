@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
+import MuiParagraph from "../components/mui/MuiParagraph";
+import MuiHeading from "../components/mui/MuiHeading";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -119,10 +121,10 @@ const Hero = () => {
   };
 
   const personalDetails = {
-    name: "FirstName SureName",
-    dep: "Frontend Developer",
+    name: "Avesh Hasanfatta",
+    dep: "Full stack Developer",
     ability:
-      "I am a passionate Frontend Developer with expertise in React.js and modern web development technologies. I love building user-friendly and visually appealing web applications.",
+      "I am a passionate Full stack developer with expertise in React.js and modern web development technologies. I love building user-friendly and visually appealing web applications.",
   };
 
   const SocialLinks = useCallback(() => {
@@ -168,27 +170,31 @@ const Hero = () => {
     <Container onMouseMove={handleMouseMove}>
       <LeftSide>
         <PersonalDetails>
-          <Typography
-            variant="h4"
-            component="h1"
-            style={{ fontWeight: "bold", marginTop: "25px" }}
+          <MuiHeading
+            variant="h1"
+            style={{
+              fontWeight: "600",
+              marginTop: "25px",
+              marginBottom: 0,
+              fontSize: "2.5rem",
+            }}
           >
             {personalDetails.name}
-          </Typography>
-          <Typography
+          </MuiHeading>
+          <MuiParagraph
             variant="h5"
             component="h2"
-            style={{ fontWeight: "bold", marginTop: "25px" }}
+            style={{ fontWeight: "400", fontSize: "1.3rem" }}
           >
             {personalDetails.dep}
-          </Typography>
-          <Typography
+          </MuiParagraph>
+          <MuiParagraph
             variant="h6"
             component="h2"
-            style={{ fontWeight: "bold", marginTop: "25px" }}
+            style={{ marginTop: "25px" }}
           >
             {personalDetails.ability}
-          </Typography>
+          </MuiParagraph>
         </PersonalDetails>
         <Typography style={{ marginTop: "25px", marginBottom: "20px" }}>
           {menuButtons?.map((menu, index) => {
