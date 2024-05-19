@@ -100,7 +100,7 @@ const SocialIcon = styled(Link)({
   color: "#fff",
 });
 
-// Common styled component for personal details
+
 const PersonalDetails = styled("div")({
   "& > *": {
     color: "#fff",
