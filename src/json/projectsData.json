@@ -1,26 +1,40 @@
 {
-    "projects": [
-      {
-        "id": 1,
-        "name": "Project Alpha",
-        "summary": "A brief summary of Project Alpha.",
-        "description": "A detailed description of Project Alpha.",
-        "details": "Further details about Project Alpha, including objectives, milestones, and team members."
-      },
-      {
-        "id": 2,
-        "name": "Project Beta",
-        "summary": "A brief summary of Project Beta.",
-        "description": "A detailed description of Project Beta.",
-        "details": "Further details about Project Beta, including objectives, milestones, and team members."
-      },
-      {
-        "id": 3,
-        "name": "Project Gamma",
-        "summary": "A brief summary of Project Gamma.",
-        "description": "A detailed description of Project Gamma.",
-        "details": "Further details about Project Gamma, including objectives, milestones, and team members."
-      }
-    ]
-  }
-  
+  "projects": [
+    {
+      "id": 1,
+      "name": "Project Alpha",
+      "summary": "A brief summary of Project Alpha.",
+      "description": "A detailed description of Project Alpha.",
+      "details": "Further details about Project Alpha, including objectives, milestones, and team members.",
+      "image": "url_to_project_alpha_image.jpg",
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31",
+      "status": "In Progress",
+      "technologies": ["React", "Node.js", "MongoDB"]
+    },
+    {
+      "id": 2,
+      "name": "Project Beta",
+      "summary": "A brief summary of Project Beta.",
+      "description": "A detailed description of Project Beta.",
+      "details": "Further details about Project Beta, including objectives, milestones, and team members.",
+      "image": "url_to_project_beta_image.jpg",
+      "startDate": "2023-02-01",
+      "endDate": "2023-11-30",
+      "status": "Completed",
+      "technologies": ["Angular", "Express", "MySQL"]
+    },
+    {
+      "id": 3,
+      "name": "Project Gamma",
+      "summary": "A brief summary of Project Gamma.",
+      "description": "A detailed description of Project Gamma.",
+      "details": "Further details about Project Gamma, including objectives, milestones, and team members.",
+      "image": "url_to_project_gamma_image.jpg",
+      "startDate": "2023-03-01",
+      "endDate": "2023-10-31",
+      "status": "Planning",
+      "technologies": ["Vue.js", "Django", "PostgreSQL"]
+    }
+  ]
+}
