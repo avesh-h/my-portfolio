@@ -8,7 +8,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
-import ProjectDetailPage from "../components/ProjectDetailPage";
+import ProjectListingPage from "./ProjectListingPage";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -212,10 +212,10 @@ const Hero = () => {
         <Box>
           <AboutPage />
         </Box>
-        <Box> 
+        <Box>
           <ExperiencePage />
         </Box>
-         <ProjectDetailPage/>
+        <ProjectListingPage />
       </RightSide>
       <Spotlight size="200px" style={{ top: position.y, left: position.x }} />
       <Spotlight size="400px" style={{ top: position.y, left: position.x }} />
