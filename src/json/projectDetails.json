@@ -1,0 +1,82 @@
+{
+  "title": "Avesh's Full Stack Developer Portfolio",
+  "overview": "Showcasing Avesh's skills, projects, experience, and education as a Full Stack Developer.",
+  "description": {
+    "background": "Avesh is a passionate Full Stack Developer with a track record of building scalable web applications.",
+    "objectives": "To demonstrate my expertise in software development through key projects and provide insights into my professional experience and education."
+  },
+  "projects": [
+    {
+      "title": "E-Commerce Platform",
+      "description": "Developed a full-featured e-commerce platform with user authentication, product catalog, shopping cart, and payment integration."
+    },
+    {
+      "title": "Social Media Dashboard",
+      "description": "Created a dashboard for analyzing social media metrics and trends using real-time data visualization."
+    },
+    {
+      "title": "Project Management Tool",
+      "description": "Built a tool for project management that includes task tracking, team collaboration, and reporting features."
+    },
+    {
+      "title": "Online Learning Platform",
+      "description": "Developed an online learning platform that supports video courses, quizzes, and progress tracking."
+    }
+  ],
+  "technicalSkills": [
+    {
+      "category": "Programming Languages",
+      "skills": ["JavaScript", "Python", "Java", "C#"]
+    },
+    {
+      "category": "Web Development",
+      "skills": ["React", "Redux", "Node.js", "Express", "HTML", "CSS"]
+    },
+    {
+      "category": "Databases",
+      "skills": ["MongoDB", "MySQL", "PostgreSQL"]
+    },
+    {
+      "category": "Tools and Technologies",
+      "skills": ["Git", "Docker", "AWS", "Jenkins"]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Tech Solutions Inc.",
+      "role": "Senior Full Stack Developer",
+      "duration": "Jan 2020 - Present",
+      "responsibilities": [
+        "Led the development of web applications using React and Node.js.",
+        "Collaborated with cross-functional teams to define, design, and ship new features.",
+        "Mentored junior developers and conducted code reviews."
+      ]
+    },
+    {
+      "company": "Web Innovations LLC",
+      "role": "Full Stack Developer",
+      "duration": "Jun 2016 - Dec 2019",
+      "responsibilities": [
+        "Developed and maintained web applications using JavaScript and Python.",
+        "Worked closely with clients to gather requirements and provide technical solutions.",
+        "Participated in the entire software development lifecycle from planning to deployment."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Technology",
+      "degree": "Bachelor of Science in Computer Science",
+      "graduationYear": 2016
+    },
+    {
+      "institution": "City College",
+      "degree": "Associate Degree in Information Technology",
+      "graduationYear": 2014
+    }
+  ],
+  "conclusionAndFuturePlans": {
+    "currentStatus": "Currently employed as a Senior Full Stack Developer at Tech Solutions Inc.",
+    "futurePlans": "To enhance technical skills by exploring artificial intelligence and machine learning, and to take on more leadership roles in future projects."
+  }
+}
