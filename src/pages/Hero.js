@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/system";
-import Button from "@mui/material/Button";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import MailIcon from "@mui/icons-material/Mail";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import MailIcon from "@mui/icons-material/Mail";
+import XIcon from "@mui/icons-material/X";
+import { Box, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/system";
+import React, { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
@@ -15,6 +17,7 @@ const buttonStyles = {
   border: "none",
   color: "#fff",
   transition: "transform 0.3s",
+  backgroundColor: "transparent",
 };
 
 const Container = styled(Box)({
@@ -89,7 +92,7 @@ const SocialIconContainer = styled("div")({
   marginTop: "8rem",
 });
 
-const SocialIcon = styled("span")({
+const SocialIcon = styled(Link)({
   marginRight: "3rem",
   cursor: "pointer",
   color: "#fff",
@@ -105,24 +108,14 @@ const PersonalDetails = styled("div")({
 
 const Hero = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isAboutHover, setIsAboutHover] = useState(false);
-  const [isProjectsHover, setIsProjectsHover] = useState(false);
-  const [isExperienceHover, setIsExperienceHover] = useState(false);
+  const [isMenuHover, setIsMenuHover] = useState({
+    about: false,
+    projects: false,
+    experience: false,
+  });
 
   const handleMouseMove = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleAboutHover = (hover) => {
-    setIsAboutHover(hover);
-  };
-
-  const handleProjectsHover = (hover) => {
-    setIsProjectsHover(hover);
-  };
-
-  const handleExperienceHover = (hover) => {
-    setIsExperienceHover(hover);
   };
 
   const personalDetails = {
@@ -131,6 +124,45 @@ const Hero = () => {
     ability:
       "I am a passionate Frontend Developer with expertise in React.js and modern web development technologies. I love building user-friendly and visually appealing web applications.",
   };
+
+  const SocialLinks = useCallback(() => {
+    return [
+      {
+        name: "github",
+        link: "https://github.com/avesh-h",
+        icon: <GitHubIcon sx={{ fontSize: 30 }} />,
+      },
+      {
+        name: "linkedin",
+        link: "https://www.linkedin.com/in/avesh-h/",
+        icon: <LinkedInIcon sx={{ fontSize: 30 }} />,
+      },
+      {
+        name: "x",
+        link: "https://twitter.com/Aves_hh",
+        icon: <XIcon sx={{ fontSize: 30 }} />,
+      },
+      {
+        name: "mail",
+        link: "mailto:aveshhasanfatta1155@gmail.com",
+        icon: <MailIcon sx={{ fontSize: 30 }} />,
+      },
+      {
+        name: "instagram",
+        link: "https://www.instagram.com/aves_h_h/",
+        icon: <InstagramIcon sx={{ fontSize: 30 }} />,
+      },
+    ];
+  }, []);
+
+  const handleMenuHover = (menu) => {
+    setIsMenuHover((prev) => {
+      return { ...prev, [menu]: !prev[menu] };
+    });
+  };
+
+  //about,projects,experience Menus
+  const menuButtons = ["about", "projects", "experience"];
 
   return (
     <Container onMouseMove={handleMouseMove}>
@@ -159,52 +191,35 @@ const Hero = () => {
           </Typography>
         </PersonalDetails>
         <Typography style={{ marginTop: "25px", marginBottom: "20px" }}>
-          <ButtonContainer>
-            <SmallHorizontalLine isHover={isAboutHover} />
-            <Button
-              variant="outlined"
-              style={buttonStyles}
-              onMouseEnter={() => handleAboutHover(true)}
-              onMouseLeave={() => handleAboutHover(false)}
-            >
-              <ButtonText variant="button">ABOUT</ButtonText>
-            </Button>
-          </ButtonContainer>
-          <ButtonContainer>
-            <SmallHorizontalLine isHover={isProjectsHover} />
-            <Button
-              variant="outlined"
-              style={buttonStyles}
-              onMouseEnter={() => handleProjectsHover(true)}
-              onMouseLeave={() => handleProjectsHover(false)}
-            >
-              <ButtonText variant="button">PROJECTS</ButtonText>
-            </Button>
-          </ButtonContainer>
-          <ButtonContainer>
-            <SmallHorizontalLine isHover={isExperienceHover} />
-            <Button
-              variant="outlined"
-              style={buttonStyles}
-              onMouseEnter={() => handleExperienceHover(true)}
-              onMouseLeave={() => handleExperienceHover(false)}
-            >
-              <ButtonText variant="button">EXPERIENCE</ButtonText>
-            </Button>
-          </ButtonContainer>
+          {menuButtons?.map((menu, index) => {
+            return (
+              <ButtonContainer key={`${menu}-${index}`}>
+                <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
+                <Button
+                  variant="outlined"
+                  style={buttonStyles}
+                  onMouseEnter={() => handleMenuHover(menu)}
+                  onMouseLeave={() => handleMenuHover(menu)}
+                >
+                  <ButtonText variant="button">
+                    {menu?.toUpperCase()}
+                  </ButtonText>
+                </Button>
+              </ButtonContainer>
+            );
+          })}
           <SocialIconContainer>
-            <SocialIcon>
-              <GitHubIcon sx={{ fontSize: 30 }} />
-            </SocialIcon>
-            <SocialIcon>
-              <InstagramIcon sx={{ fontSize: 30 }} />
-            </SocialIcon>
-            <SocialIcon>
-              <MailIcon sx={{ fontSize: 30 }} />
-            </SocialIcon>
-            <SocialIcon>
-              <LinkedInIcon sx={{ fontSize: 30 }} />
-            </SocialIcon>
+            {SocialLinks()?.map((social, index) => {
+              return (
+                <SocialIcon
+                  to={social?.link}
+                  target="_blank"
+                  key={`${social?.name}-${index}`}
+                >
+                  {social?.icon}
+                </SocialIcon>
+              );
+            })}
           </SocialIconContainer>
         </Typography>
       </LeftSide>
