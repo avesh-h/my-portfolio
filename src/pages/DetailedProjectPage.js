@@ -12,7 +12,7 @@ const DetailedProjectPage = ({ project }) => {
         justifyContent: "center",
         color: "white",
         overflow: "hidden",
-        padding: "3rem 8rem"
+        padding: { xs: "1rem", sm: "3rem 8rem" }, // Adjusted padding for mobile and tablet views
       }}
     >
       <Container sx={{ display: "flex", justifyContent: "center" }}>
