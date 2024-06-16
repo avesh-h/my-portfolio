@@ -11,7 +11,7 @@ const Container = styled(Box)({
   alignItems: "start",
   justifyContent: "left",
   flexDirection: "column",
-  padding: "2rem",
+  padding: { md: "2rem", xs: "1rem" },
 });
 
 const ExperienceItem = styled(Box)({

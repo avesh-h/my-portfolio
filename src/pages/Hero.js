@@ -7,7 +7,7 @@ import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
@@ -29,38 +29,22 @@ const Container = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   position: "relative",
   overflow: "hidden",
-  padding: "3rem 8rem", 
+  padding: "3rem 8rem",
   [theme.breakpoints.down("lg")]: {
-    padding: "3rem 4rem", 
+    padding: "3rem 4rem",
   },
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
-    padding: "2rem", 
+    padding: "2rem",
   },
   [theme.breakpoints.down("sm")]: {
-    padding: "1rem", 
-  },
-}));
-
-const Spotlight = styled("div")(({ size, theme }) => ({
-  position: "absolute",
-  width: size,
-  height: size,
-  borderRadius: "50%",
-  background:
-    "radial-gradient(circle, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 80%)",
-  zIndex: "999",
-  transform: "translate(-50%, -50%)",
-  transition: "transform 0.1s ease-out",
-  pointerEvents: "none",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
+    padding: "1rem",
   },
 }));
 
 const LeftSide = styled(Box)(({ theme }) => ({
-  flex: "1 0 50%", 
-  padding: "1rem", 
+  flex: "1 0 50%",
+  padding: "1rem",
   display: "flex",
   flexDirection: "column",
   [theme.breakpoints.down("sm")]: {
@@ -69,14 +53,14 @@ const LeftSide = styled(Box)(({ theme }) => ({
 }));
 
 const RightSide = styled(Box)(({ theme }) => ({
-  flex: "1 0 50%", 
-  padding: "1rem", 
-  overflowY: "auto", 
-  maxHeight: "calc(100vh - 6rem)", 
-  scrollbarWidth:'None',
+  flex: "1 0 50%",
+  padding: "1rem",
+  overflowY: "auto",
+  maxHeight: "calc(100vh - 6rem)",
+  scrollbarWidth: "none",
   [theme.breakpoints.down("sm")]: {
     padding: "0.5rem",
-    maxHeight: "initial", 
+    maxHeight: "initial",
     overflowY: "initial",
   },
 }));
@@ -128,16 +112,11 @@ const PersonalDetails = styled("div")(({ theme }) => ({
 }));
 
 const Hero = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMenuHover, setIsMenuHover] = useState({
     about: false,
     projects: false,
     experience: false,
   });
-
-  const handleMouseMove = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
 
   const personalDetails = {
     name: "Avesh Hasanfatta",
@@ -186,7 +165,7 @@ const Hero = () => {
   const menuButtons = ["about", "projects", "experience"];
 
   return (
-    <Container onMouseMove={handleMouseMove}>
+    <Container>
       <LeftSide>
         <PersonalDetails>
           <MuiHeading
@@ -211,11 +190,15 @@ const Hero = () => {
           >
             {personalDetails.dep}
           </MuiParagraph>
-          <MuiParagraph variant="h6" component="h2" style={{ marginTop: "25px" }}>
+          <MuiParagraph
+            variant="h6"
+            component="h2"
+            style={{ marginTop: "25px" }}
+          >
             {personalDetails.ability}
           </MuiParagraph>
         </PersonalDetails>
-        <Typography style={{ marginTop: "25px", marginBottom: "20px"  }}>
+        <Typography style={{ marginTop: "25px", marginBottom: "20px" }}>
           {menuButtons?.map((menu, index) => (
             <ButtonContainer key={`${menu}-${index}`}>
               <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
@@ -249,10 +232,6 @@ const Hero = () => {
           <ProjectListingPage />
         </Box>
       </RightSide>
-      <Spotlight size="200px" style={{ top: position.y, left: position.x }} />
-      <Spotlight size="400px" style={{ top: position.y, left: position.x }} />
-      <Spotlight size="600px" style={{ top: position.y, left: position.x }} />
-      <Spotlight size="800px" style={{ top: position.y, left: position.x }} />
     </Container>
   );
 };
