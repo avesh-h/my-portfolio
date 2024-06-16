@@ -7,7 +7,7 @@ import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
@@ -22,20 +22,27 @@ const buttonStyles = {
   backgroundColor: "transparent",
 };
 
-const Container = styled(Box)({
-  height: "100vh",
+const Container = styled(Box)(({ theme }) => ({
+  minHeight: "100vh",
   background: "#111",
   display: "flex",
-  alignItems: "flex-start",
   justifyContent: "center",
   position: "relative",
   overflow: "hidden",
-  paddingRight: "8rem",
-  paddingLeft: "8rem",
-  paddingTop: "3rem",
-});
+  padding: "3rem 8rem", 
+  [theme.breakpoints.down("lg")]: {
+    padding: "3rem 4rem", 
+  },
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    padding: "2rem", 
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "1rem", 
+  },
+}));
 
-const Spotlight = styled("div")(({ size }) => ({
+const Spotlight = styled("div")(({ size, theme }) => ({
   position: "absolute",
   width: size,
   height: size,
@@ -46,30 +53,33 @@ const Spotlight = styled("div")(({ size }) => ({
   transform: "translate(-50%, -50%)",
   transition: "transform 0.1s ease-out",
   pointerEvents: "none",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
 }));
 
-const SideContainer = styled(Box)({
-  flex: 1,
-  padding: "16px",
-});
-
-const PersonalDetailsContainer = styled(SideContainer)({
-  textAlign: "left",
-  paddingTop: "2.5rem",
-});
-
-const LeftSide = styled(PersonalDetailsContainer)({});
-
-const RightSide = styled(SideContainer)({
-  textAlign: "left",
-  overflowY: "auto",
-  maxHeight: "calc(100vh - 100px)",
-  "&::-webkit-scrollbar": {
-    width: 0,
+const LeftSide = styled(Box)(({ theme }) => ({
+  flex: "1 0 50%", 
+  padding: "1rem", 
+  display: "flex",
+  flexDirection: "column",
+  [theme.breakpoints.down("sm")]: {
+    padding: "0.5rem",
   },
-  scrollbarWidth: "none",
-  padding: "2rem",
-});
+}));
+
+const RightSide = styled(Box)(({ theme }) => ({
+  flex: "1 0 50%", 
+  padding: "1rem", 
+  overflowY: "auto", 
+  maxHeight: "calc(100vh - 6rem)", 
+  scrollbarWidth:'None',
+  [theme.breakpoints.down("sm")]: {
+    padding: "0.5rem",
+    maxHeight: "initial", 
+    overflowY: "initial",
+  },
+}));
 
 const SmallHorizontalLine = styled("hr")(({ isHover }) => ({
   width: isHover ? "60px" : "40px",
@@ -81,32 +91,41 @@ const SmallHorizontalLine = styled("hr")(({ isHover }) => ({
 const ButtonContainer = styled("div")({
   display: "flex",
   alignItems: "center",
-  marginTop: "12px",
+  justifyContent: "left",
+  margin: "1rem 0",
 });
 
 const ButtonText = styled(Typography)({
   transition: "transform 0.3s",
 });
 
-const SocialIconContainer = styled("div")({
+const SocialIconContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  marginTop: "8rem",
-});
+  justifyContent: "left",
+  marginTop: "2rem",
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "1rem",
+    justifyContent: "center",
+  },
+}));
 
-const SocialIcon = styled(Link)({
-  marginRight: "3rem",
+const SocialIcon = styled(Link)(({ theme }) => ({
+  marginRight: "1rem",
   cursor: "pointer",
   color: "#fff",
-});
+  fontSize: "24px",
+  [theme.breakpoints.down("sm")]: {
+    marginRight: "0.5rem",
+  },
+}));
 
-
-const PersonalDetails = styled("div")({
+const PersonalDetails = styled("div")(({ theme }) => ({
   "& > *": {
     color: "#fff",
     marginBottom: "25px",
   },
-});
+}));
 
 const Hero = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -132,38 +151,38 @@ const Hero = () => {
       {
         name: "github",
         link: "https://github.com/avesh-h",
-        icon: <GitHubIcon sx={{ fontSize: 30 }} />,
+        icon: <GitHubIcon sx={{ fontSize: 24 }} />,
       },
       {
         name: "linkedin",
         link: "https://www.linkedin.com/in/avesh-h/",
-        icon: <LinkedInIcon sx={{ fontSize: 30 }} />,
+        icon: <LinkedInIcon sx={{ fontSize: 24 }} />,
       },
       {
         name: "x",
         link: "https://twitter.com/Aves_hh",
-        icon: <XIcon sx={{ fontSize: 30 }} />,
+        icon: <XIcon sx={{ fontSize: 24 }} />,
       },
       {
         name: "mail",
         link: "mailto:aveshhasanfatta1155@gmail.com",
-        icon: <MailIcon sx={{ fontSize: 30 }} />,
+        icon: <MailIcon sx={{ fontSize: 24 }} />,
       },
       {
         name: "instagram",
         link: "https://www.instagram.com/aves_h_h/",
-        icon: <InstagramIcon sx={{ fontSize: 30 }} />,
+        icon: <InstagramIcon sx={{ fontSize: 24 }} />,
       },
     ];
   }, []);
 
   const handleMenuHover = (menu) => {
-    setIsMenuHover((prev) => {
-      return { ...prev, [menu]: !prev[menu] };
-    });
+    setIsMenuHover((prev) => ({
+      ...prev,
+      [menu]: !prev[menu],
+    }));
   };
 
-  //about,projects,experience Menus
   const menuButtons = ["about", "projects", "experience"];
 
   return (
@@ -184,59 +203,51 @@ const Hero = () => {
           <MuiParagraph
             variant="h5"
             component="h2"
-            style={{ fontWeight: "400", fontSize: "1.3rem" }}
+            style={{
+              paddingTop: "1.2rem",
+              fontWeight: "400",
+              fontSize: "1.3rem",
+            }}
           >
             {personalDetails.dep}
           </MuiParagraph>
-          <MuiParagraph
-            variant="h6"
-            component="h2"
-            style={{ marginTop: "25px" }}
-          >
+          <MuiParagraph variant="h6" component="h2" style={{ marginTop: "25px" }}>
             {personalDetails.ability}
           </MuiParagraph>
         </PersonalDetails>
-        <Typography style={{ marginTop: "25px", marginBottom: "20px" }}>
-          {menuButtons?.map((menu, index) => {
-            return (
-              <ButtonContainer key={`${menu}-${index}`}>
-                <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
-                <Button
-                  variant="outlined"
-                  style={buttonStyles}
-                  onMouseEnter={() => handleMenuHover(menu)}
-                  onMouseLeave={() => handleMenuHover(menu)}
-                >
-                  <ButtonText variant="button">
-                    {menu?.toUpperCase()}
-                  </ButtonText>
-                </Button>
-              </ButtonContainer>
-            );
-          })}
+        <Typography style={{ marginTop: "25px", marginBottom: "20px"  }}>
+          {menuButtons?.map((menu, index) => (
+            <ButtonContainer key={`${menu}-${index}`}>
+              <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
+              <Button
+                variant="outlined"
+                style={buttonStyles}
+                onMouseEnter={() => handleMenuHover(menu)}
+                onMouseLeave={() => handleMenuHover(menu)}
+              >
+                <ButtonText variant="button">{menu?.toUpperCase()}</ButtonText>
+              </Button>
+            </ButtonContainer>
+          ))}
           <SocialIconContainer>
-            {SocialLinks()?.map((social, index) => {
-              return (
-                <SocialIcon
-                  to={social?.link}
-                  target="_blank"
-                  key={`${social?.name}-${index}`}
-                >
-                  {social?.icon}
-                </SocialIcon>
-              );
-            })}
+            {SocialLinks()?.map((social, index) => (
+              <SocialIcon
+                to={social?.link}
+                target="_blank"
+                key={`${social?.name}-${index}`}
+              >
+                {social?.icon}
+              </SocialIcon>
+            ))}
           </SocialIconContainer>
         </Typography>
       </LeftSide>
       <RightSide>
         <Box>
           <AboutPage />
-        </Box>
-        <Box>
           <ExperiencePage />
+          <ProjectListingPage />
         </Box>
-        <ProjectListingPage />
       </RightSide>
       <Spotlight size="200px" style={{ top: position.y, left: position.x }} />
       <Spotlight size="400px" style={{ top: position.y, left: position.x }} />

@@ -39,7 +39,6 @@ const Responsibilities = styled("ul")({
   color: "#fff",
   fontSize: "1rem",
   listStyleType: "inside",
-  paddingLeft: "1rem",
   fontFamily: "Montserrat",
   fontWeight: "200",
 });
