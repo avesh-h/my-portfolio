@@ -67,7 +67,7 @@ export const SpotlightCtxProvider = ({ children }) => {
           />
         </Box>
       ) : (
-        { children }
+        <>{children}</>
       )}
     </SpotlightCtx.Provider>
   );
