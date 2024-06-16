@@ -40,11 +40,11 @@ const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     padding: "1rem",
   },
+  gap: "1rem",
 }));
 
 const LeftSide = styled(Box)(({ theme }) => ({
   flex: "1 0 50%",
-  padding: "1rem",
   display: "flex",
   flexDirection: "column",
   [theme.breakpoints.down("sm")]: {
@@ -54,7 +54,6 @@ const LeftSide = styled(Box)(({ theme }) => ({
 
 const RightSide = styled(Box)(({ theme }) => ({
   flex: "1 0 50%",
-  padding: "1rem",
   overflowY: "auto",
   maxHeight: "calc(100vh - 6rem)",
   scrollbarWidth: "none",
@@ -172,7 +171,6 @@ const Hero = () => {
             variant="h1"
             style={{
               fontWeight: "600",
-              marginTop: "25px",
               marginBottom: 0,
               fontSize: "2.5rem",
             }}

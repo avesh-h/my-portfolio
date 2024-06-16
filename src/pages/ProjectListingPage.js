@@ -19,7 +19,7 @@ const styles = {
 
 const ProjectListingPage = () => {
   return (
-    <Container sx={{ marginTop: "20px", padding: 0 }}>
+    <Container>
       <MuiHeading>Projects</MuiHeading>
       <Grid container spacing={1}>
         {projectsData.projects.map((project, index) => (

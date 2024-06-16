@@ -5,13 +5,10 @@ import MuiHeading from "../components/mui/MuiHeading";
 import MuiParagraph from "../components/mui/MuiParagraph";
 
 const Container = styled(Box)({
-  minHeight: "60vh",
-  background: "#111",
   display: "flex",
   alignItems: "start",
   justifyContent: "start",
   flexDirection: "column",
-  padding: { md: "2rem", xs: "1rem" },
 });
 
 const AboutPage = () => {

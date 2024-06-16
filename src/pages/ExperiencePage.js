@@ -5,13 +5,11 @@ import MuiParagraph from "../components/mui/MuiParagraph";
 import MuiHeading from "../components/mui/MuiHeading";
 
 const Container = styled(Box)({
-  minHeight: "60vh",
-  background: "#111",
   display: "flex",
   alignItems: "start",
-  justifyContent: "left",
+  justifyContent: "center",
   flexDirection: "column",
-  padding: { md: "2rem", xs: "1rem" },
+  paddingTop: "1rem",
 });
 
 const ExperienceItem = styled(Box)({
