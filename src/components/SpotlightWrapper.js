@@ -1,5 +1,5 @@
-import { styled, Box, useMediaQuery } from "@mui/material";
-import { createContext, useContext, useState } from "react";
+import { Box, styled, useMediaQuery } from "@mui/material";
+import { useState } from "react";
 
 const Spotlight = styled("div")(({ size }) => {
   return {
@@ -16,7 +16,7 @@ const Spotlight = styled("div")(({ size }) => {
   };
 });
 
-const SpotlightCtx = createContext();
+// const SpotlightCtx = createContext();
 
 // const Container = styled(Box)({
 //   height: "100vh",
@@ -31,16 +31,16 @@ const SpotlightCtx = createContext();
 //   paddingTop: "3rem",
 // });
 
-export const SpotlightCtxProvider = ({ children }) => {
+export const SpotlightWrapper = ({ children }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const isLargeScreen = useMediaQuery("(min-width:800px)");
+  const isLargeScreen = useMediaQuery("(min-width:900px)");
 
   const handleMouseMove = (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
   };
   return (
-    <SpotlightCtx.Provider>
+    <>
       {/* <Container onMouseMove={handleMouseMove}> */}
       {isLargeScreen ? (
         <Box
@@ -69,10 +69,6 @@ export const SpotlightCtxProvider = ({ children }) => {
       ) : (
         <>{children}</>
       )}
-    </SpotlightCtx.Provider>
+    </>
   );
-};
-
-export const useSpotlightContext = () => {
-  return useContext(SpotlightCtx);
 };

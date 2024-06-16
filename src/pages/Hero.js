@@ -31,7 +31,7 @@ const Container = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   padding: "3rem 8rem",
   [theme.breakpoints.down("lg")]: {
-    padding: "3rem 4rem",
+    padding: "3rem 3rem",
   },
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
@@ -57,10 +57,9 @@ const RightSide = styled(Box)(({ theme }) => ({
   overflowY: "auto",
   maxHeight: "calc(100vh - 6rem)",
   scrollbarWidth: "none",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     padding: "0.5rem",
-    maxHeight: "initial",
-    overflowY: "initial",
+    maxHeight: "fit-content",
   },
 }));
 
@@ -87,9 +86,9 @@ const SocialIconContainer = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "left",
   marginTop: "2rem",
+  gap: "1rem",
   [theme.breakpoints.down("sm")]: {
     marginTop: "1rem",
-    justifyContent: "center",
   },
 }));
 

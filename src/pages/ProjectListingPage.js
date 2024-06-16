@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Typography, Grid, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
-import projectsData from "../json/projectsData.json";
+import projectsData from "../static/projectsData.json";
 import MuiHeading from "../components/mui/MuiHeading";
 
 const styles = {
