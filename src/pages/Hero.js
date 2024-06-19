@@ -6,13 +6,14 @@ import XIcon from "@mui/icons-material/X";
 import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import MuiHeading from "../components/mui/MuiHeading";
+import MuiParagraph from "../components/mui/MuiParagraph";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
-import MuiParagraph from "../components/mui/MuiParagraph";
-import MuiHeading from "../components/mui/MuiHeading";
+import { useSpotlightContext } from "../components/SpotlightWrapper";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -28,14 +29,17 @@ const Container = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   position: "relative",
-  overflow: "hidden",
+  scrollbarWidth: "none",
+  overflowY: "auto",
   padding: "3rem 8rem",
+  maxHeight: "calc(100vh - 6rem)",
   [theme.breakpoints.down("lg")]: {
     padding: "3rem 3rem",
   },
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     padding: "2rem",
+    maxHeight: "none",
   },
   [theme.breakpoints.down("sm")]: {
     padding: "1rem",
@@ -47,6 +51,8 @@ const LeftSide = styled(Box)(({ theme }) => ({
   flex: "1 0 50%",
   display: "flex",
   flexDirection: "column",
+  position: "sticky",
+  top: 0,
   [theme.breakpoints.down("sm")]: {
     padding: "0.5rem",
   },
@@ -54,9 +60,6 @@ const LeftSide = styled(Box)(({ theme }) => ({
 
 const RightSide = styled(Box)(({ theme }) => ({
   flex: "1 0 50%",
-  overflowY: "auto",
-  maxHeight: "calc(100vh - 6rem)",
-  scrollbarWidth: "none",
   [theme.breakpoints.down("md")]: {
     padding: "0.5rem",
     maxHeight: "fit-content",
@@ -116,6 +119,10 @@ const Hero = () => {
     experience: false,
   });
 
+  const currentSectionRef = useRef({});
+
+  const { setIsSpotlightVisiblity, isLargeScreen } = useSpotlightContext();
+
   const personalDetails = {
     name: "Avesh Hasanfatta",
     dep: "Full stack Developer",
@@ -160,7 +167,62 @@ const Hero = () => {
     }));
   };
 
-  const menuButtons = ["about", "projects", "experience"];
+  const menuButtons = ["about", "experience", "projects"];
+
+  const handleMenuClick = (menu) => {
+    setIsSpotlightVisiblity(false);
+    currentSectionRef?.current?.[menu]?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.4,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsMenuHover((prev) => {
+            if (entry.target.id === "about") {
+              return {
+                about: true,
+                experience: false,
+                projects: false,
+              };
+            } else if (entry.target.id === "experience") {
+              return {
+                about: false,
+                experience: true,
+                projects: false,
+              };
+            } else {
+              return {
+                about: false,
+                experience: false,
+                projects: true,
+              };
+            }
+          });
+        }
+      });
+    };
+
+    // The Intersection Observer API lets code register a callback function that is executed whenever a particular element enters or exits an intersection with another element (or the viewport)
+
+    const observer = new IntersectionObserver(observerCallback, options);
+
+    //Get array of all span elements
+    const sections = Object.values(currentSectionRef.current);
+
+    //Then observe and it watch that when the your element will intersect with root element that you mentioned.
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   return (
     <Container>
@@ -195,20 +257,25 @@ const Hero = () => {
             {personalDetails.ability}
           </MuiParagraph>
         </PersonalDetails>
-        <Typography style={{ marginTop: "25px", marginBottom: "20px" }}>
-          {menuButtons?.map((menu, index) => (
-            <ButtonContainer key={`${menu}-${index}`}>
-              <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
-              <Button
-                variant="outlined"
-                style={buttonStyles}
-                onMouseEnter={() => handleMenuHover(menu)}
-                onMouseLeave={() => handleMenuHover(menu)}
-              >
-                <ButtonText variant="button">{menu?.toUpperCase()}</ButtonText>
-              </Button>
-            </ButtonContainer>
-          ))}
+        <Box style={{ marginTop: "25px", marginBottom: "20px" }}>
+          {isLargeScreen
+            ? menuButtons?.map((menu, index) => (
+                <ButtonContainer key={`${menu}-${index}`}>
+                  <SmallHorizontalLine isHover={isMenuHover?.[menu]} />
+                  <Button
+                    variant="outlined"
+                    style={buttonStyles}
+                    onMouseEnter={() => handleMenuHover(menu)}
+                    onMouseLeave={() => handleMenuHover(menu)}
+                    onClick={() => handleMenuClick(menu)}
+                  >
+                    <ButtonText variant="button">
+                      {menu?.toUpperCase()}
+                    </ButtonText>
+                  </Button>
+                </ButtonContainer>
+              ))
+            : null}
           <SocialIconContainer>
             {SocialLinks()?.map((social, index) => (
               <SocialIcon
@@ -220,13 +287,28 @@ const Hero = () => {
               </SocialIcon>
             ))}
           </SocialIconContainer>
-        </Typography>
+        </Box>
       </LeftSide>
       <RightSide>
         <Box>
-          <AboutPage />
-          <ExperiencePage />
-          <ProjectListingPage />
+          <span
+            id="about"
+            ref={(ele) => (currentSectionRef.current["about"] = ele)}
+          >
+            <AboutPage />
+          </span>
+          <span
+            id="experience"
+            ref={(ele) => (currentSectionRef.current["experience"] = ele)}
+          >
+            <ExperiencePage />
+          </span>
+          <span
+            id="projects"
+            ref={(ele) => (currentSectionRef.current["projects"] = ele)}
+          >
+            <ProjectListingPage />
+          </span>
         </Box>
       </RightSide>
     </Container>

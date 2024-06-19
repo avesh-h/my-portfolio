@@ -1,5 +1,5 @@
 import { Box, styled, useMediaQuery } from "@mui/material";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const Spotlight = styled("div")(({ size }) => {
   return {
@@ -16,32 +16,24 @@ const Spotlight = styled("div")(({ size }) => {
   };
 });
 
-// const SpotlightCtx = createContext();
-
-// const Container = styled(Box)({
-//   height: "100vh",
-//   background: "#111",
-//   display: "flex",
-//   alignItems: "flex-start",
-//   justifyContent: "center",
-//   position: "relative",
-//   overflowX: "hidden",
-//   paddingRight: "8rem",
-//   paddingLeft: "8rem",
-//   paddingTop: "3rem",
-// });
+const SpotlightCtx = createContext();
 
 export const SpotlightWrapper = ({ children }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isSpotlightVisiblity, setIsSpotlightVisiblity] = useState(true);
 
   const isLargeScreen = useMediaQuery("(min-width:900px)");
 
   const handleMouseMove = (e) => {
+    if (!isSpotlightVisiblity) {
+      setIsSpotlightVisiblity(true);
+    }
     setPosition({ x: e.clientX, y: e.clientY });
   };
   return (
-    <>
-      {/* <Container onMouseMove={handleMouseMove}> */}
+    <SpotlightCtx.Provider
+      value={{ setIsSpotlightVisiblity, isSpotlightVisiblity, isLargeScreen }}
+    >
       {isLargeScreen ? (
         <Box
           onMouseMove={handleMouseMove}
@@ -49,26 +41,33 @@ export const SpotlightWrapper = ({ children }) => {
           overflow={"hidden"}
         >
           {children}
-          <Spotlight
-            size="200px"
-            style={{ top: position.y, left: position.x }}
-          />
-          <Spotlight
-            size="400px"
-            style={{ top: position.y, left: position.x }}
-          />
-          <Spotlight
-            size="600px"
-            style={{ top: position.y, left: position.x }}
-          />
-          <Spotlight
-            size="800px"
-            style={{ top: position.y, left: position.x }}
-          />
+          {isSpotlightVisiblity ? (
+            <>
+              <Spotlight
+                size="200px"
+                style={{ top: position.y, left: position.x }}
+              />
+              <Spotlight
+                size="400px"
+                style={{ top: position.y, left: position.x }}
+              />
+              <Spotlight
+                size="600px"
+                style={{ top: position.y, left: position.x }}
+              />
+              <Spotlight
+                size="800px"
+                style={{ top: position.y, left: position.x }}
+              />
+            </>
+          ) : null}
         </Box>
       ) : (
         <>{children}</>
       )}
-    </>
+    </SpotlightCtx.Provider>
   );
+};
+export const useSpotlightContext = () => {
+  return useContext(SpotlightCtx);
 };

@@ -1,15 +1,16 @@
 // DetailedProjectPageWrapper.js
 
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
-import DetailedProjectPage from './DetailedProjectPage';
-import projectsData from '../json/projectsData.json';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { Typography } from "@mui/material";
+import DetailedProjectPage from "./DetailedProjectPage";
+import projectsData from "../static/projectsData.json";
 
 const DetailedProjectPageWrapper = () => {
   const { projectId } = useParams();
-  const project = projectsData.projects.find(p => p.id === parseInt(projectId, 10));
-  console.log(projectId);
+  const project = projectsData.projects.find(
+    (p) => p.id === parseInt(projectId, 10)
+  );
   return (
     <div>
       {project ? (
