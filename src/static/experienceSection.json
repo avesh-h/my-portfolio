@@ -1,0 +1,40 @@
+{
+  "experienceData": [
+    {
+      "title": "Software Developer",
+      "company": "Webosmotic Private Limited",
+      "duration": "June 2023 - Present",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "responsibilities": [
+        "Developed a chat application with frontend-backend integration using Redux and RTK Query. Designed a user-friendly interface utilizing Material UI in React.",
+        "Contributed to a project enabling product creation and invoice/subscriptions generation with email services and payment integration.",
+        "Collaborated closely with the backend team to deliver intuitive UI for product management, including creation, updates, and deletions, while ensuring transparent access to invoices and transaction data."
+      ]
+    },
+    {
+      "title": "Jr.Software Developer",
+      "company": "Zechrome Technologies",
+      "duration": "September 2022 - April 2023",
+      "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "responsibilities": [
+        "Stayed updated with web technology trends like Next.js, while crafting intuitive UI with Chakra UI. Implemented asynchronous state management of application using RTK Query.",
+        "Developed user-friendly applications and gained proficiency in MongoDB NoSQL database, integrating it seamlessly with Mongoose ORM for user data storage and authentication.",
+        "Streamlined backend operations by optimizing data retrieval with aggregation methods, ensuring only essential data is provided to the client side."
+      ]
+    },
+    {
+      "title": "Student Intern",
+      "company": "AT Infotech",
+      "duration": "Summer 2013",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "responsibilities": [
+        "Acquired proficiency in C and C++ languages, gaining a solid understanding of fundamental coding concepts.",
+        "Acquired knowledge of object-oriented programming (OOP) principles in C++, including class definitions, inheritance types, and practical implementation.",
+        "Developed a strong foundation in web development by learning HTML, CSS, and jQuery",
+        "Demonstrated proficiency in creating visually appealing and interactive webpages using HTML and CSS.",
+        "Utilized jQuery to enhance the functionality and interactivity of webpages.",
+        "Acquired skills in creating responsive web design using Bootstrap, utilizing its predefined classes to ensure cross-device compatibility."
+      ]
+    }
+  ]
+}

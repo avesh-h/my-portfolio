@@ -2,39 +2,58 @@
   "projects": [
     {
       "id": 1,
-      "name": "Project Alpha",
-      "summary": "A brief summary of Project Alpha.",
-      "description": "A detailed description of Project Alpha.",
+      "name": "Memories App",
+      "summary": "Clone of Social network site",
+      "deployement": "Vercel",
       "details": "Further details about Project Alpha, including objectives, milestones, and team members.",
       "image": "url_to_project_alpha_image.jpg",
       "startDate": "2023-01-01",
       "endDate": "2023-12-31",
       "status": "In Progress",
-      "technologies": ["React", "Node.js", "MongoDB"]
+      "technologies": [
+        "React",
+        "MUI",
+        "Node.js",
+        "MongoDB",
+        "Mongoose ORM",
+        "Express.js",
+        "Redux",
+        "Socket.io"
+      ],
+      "link": "https://mern-memories-app-xi.vercel.app/posts"
     },
     {
       "id": 2,
-      "name": "Project Beta",
-      "summary": "A brief summary of Project Beta.",
-      "description": "A detailed description of Project Beta.",
+      "name": "Play-O-Time",
+      "summary": "Game Bookings Note App",
+      "deployement": "Render",
       "details": "Further details about Project Beta, including objectives, milestones, and team members.",
       "image": "url_to_project_beta_image.jpg",
       "startDate": "2023-02-01",
-      "endDate": "2023-11-30",
-      "status": "Completed",
-      "technologies": ["Angular", "Express", "MySQL"]
+      "endDate": "Present",
+      "status": "In Progress",
+      "technologies": [
+        "Next-JS-14",
+        "MUI",
+        "Next-auth",
+        "Redux-Toolkit-Query",
+        "MongoDB",
+        "Mongoose ORM",
+        "Cron-job.org"
+      ],
+      "link": "https://play-o-time.onrender.com/login"
     },
     {
       "id": 3,
-      "name": "Project Gamma",
-      "summary": "A brief summary of Project Gamma.",
+      "name": "Prompt-O-Verse",
+      "summary": "Saved Your AI generated Prompt in your profile.",
       "description": "A detailed description of Project Gamma.",
       "details": "Further details about Project Gamma, including objectives, milestones, and team members.",
       "image": "url_to_project_gamma_image.jpg",
       "startDate": "2023-03-01",
       "endDate": "2023-10-31",
       "status": "Planning",
-      "technologies": ["Vue.js", "Django", "PostgreSQL"]
+      "technologies": ["Next.js", "MongoDB", "Mongoose ORM", "Next-auth"]
     }
   ]
 }

@@ -1,19 +1,15 @@
-import GitHubIcon from "@mui/icons-material/GitHub";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailIcon from "@mui/icons-material/Mail";
-import XIcon from "@mui/icons-material/X";
 import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import MuiHeading from "../components/mui/MuiHeading";
 import MuiParagraph from "../components/mui/MuiParagraph";
+import { useSpotlightContext } from "../components/SpotlightWrapper";
+import { personalDetails } from "../static/profileSection";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
-import { useSpotlightContext } from "../components/SpotlightWrapper";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -122,43 +118,6 @@ const Hero = () => {
   const currentSectionRef = useRef({});
 
   const { setIsSpotlightVisiblity, isLargeScreen } = useSpotlightContext();
-
-  const personalDetails = {
-    name: "Avesh Hasanfatta",
-    dep: "Full stack Developer",
-    ability:
-      "I am a passionate Full stack developer with expertise in React.js and modern web development technologies. I love building user-friendly and visually appealing web applications.",
-  };
-
-  const SocialLinks = useCallback(() => {
-    return [
-      {
-        name: "github",
-        link: "https://github.com/avesh-h",
-        icon: <GitHubIcon sx={{ fontSize: 24 }} />,
-      },
-      {
-        name: "linkedin",
-        link: "https://www.linkedin.com/in/avesh-h/",
-        icon: <LinkedInIcon sx={{ fontSize: 24 }} />,
-      },
-      {
-        name: "x",
-        link: "https://twitter.com/Aves_hh",
-        icon: <XIcon sx={{ fontSize: 24 }} />,
-      },
-      {
-        name: "mail",
-        link: "mailto:aveshhasanfatta1155@gmail.com",
-        icon: <MailIcon sx={{ fontSize: 24 }} />,
-      },
-      {
-        name: "instagram",
-        link: "https://www.instagram.com/aves_h_h/",
-        icon: <InstagramIcon sx={{ fontSize: 24 }} />,
-      },
-    ];
-  }, []);
 
   const handleMenuHover = (menu) => {
     setIsMenuHover((prev) => ({
@@ -277,7 +236,7 @@ const Hero = () => {
               ))
             : null}
           <SocialIconContainer>
-            {SocialLinks()?.map((social, index) => (
+            {personalDetails?.socialLinks?.map((social, index) => (
               <SocialIcon
                 to={social?.link}
                 target="_blank"

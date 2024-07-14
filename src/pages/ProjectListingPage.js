@@ -30,7 +30,6 @@ const ProjectListingPage = () => {
                   <Link
                     to={`/project/${project.id}`}
                     style={styles.link}
-                    target="_blank"
                     rel="noopener noreferrer"
                   >
                     {project.name}
