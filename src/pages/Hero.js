@@ -137,11 +137,12 @@ const Hero = () => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.4,
+      threshold: 0.5,
     };
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
+        console.log("entry", entry.target.id);
         if (entry.isIntersecting) {
           setIsMenuHover((prev) => {
             if (entry.target.id === "about") {
