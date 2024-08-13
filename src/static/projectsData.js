@@ -44,6 +44,7 @@ export const projectsContent = {
         "Next-auth",
         "Redux-Toolkit-Query",
         "MongoDB",
+        "Redis",
         "Mongoose ORM",
         "Cron-job.org",
       ],

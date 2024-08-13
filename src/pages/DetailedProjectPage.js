@@ -94,7 +94,7 @@ const DetailedProjectPage = ({ project }) => {
                         label={p}
                         variant="outlined"
                         key={`${p}-${i}`}
-                        sx={{ color: "white", ml: 1.5 }}
+                        sx={{ color: "white", ml: 1.5, my: 1 }}
                       />
                     );
                   })}
