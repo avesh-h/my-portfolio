@@ -25,7 +25,7 @@ export const projectsContent = {
         "Redux",
         "Socket.io",
       ],
-      link: "https://mern-memories-app-xi.vercel.app/posts",
+      link: "https://mem-client-side-service.vercel.app/posts",
     },
     {
       id: 2,
@@ -48,7 +48,7 @@ export const projectsContent = {
         "Mongoose ORM",
         "Cron-job.org",
       ],
-      link: "https://play-o-time.onrender.com/login",
+      link: "https://asia-play-o-time.onrender.com/login",
     },
     {
       id: 3,
