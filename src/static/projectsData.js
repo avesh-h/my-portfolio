@@ -48,7 +48,7 @@ export const projectsContent = {
         "Mongoose ORM",
         "Cron-job.org",
       ],
-      link: "https://asia-play-o-time.onrender.com/login",
+      link: "https://game-poll.vercel.app/login",
     },
     {
       id: 3,
