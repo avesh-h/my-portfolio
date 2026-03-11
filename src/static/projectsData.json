@@ -3,57 +3,38 @@
     {
       "id": 1,
       "name": "Memories App",
-      "summary": "Clone of Social network site",
+      "summary": "Full-stack social networking platform",
+      "description": "A full-stack social networking platform built with a microservices architecture (Post, Chat, Mail, User services) using RabbitMQ for async task delegation. Features real-time chat and group messaging via Socket.io, along with standard social interactions — posts, likes, and comments.",
       "deployement": "Vercel",
-      "details": "Further details about Project Alpha, including objectives, milestones, and team members.",
-      "image": "url_to_project_alpha_image.jpg",
       "startDate": "2023-01-01",
       "endDate": "2023-12-31",
-      "status": "In Progress",
-      "technologies": [
-        "React",
-        "MUI",
-        "Node.js",
-        "MongoDB",
-        "Mongoose ORM",
-        "Express.js",
-        "Redux",
-        "Socket.io"
-      ],
+      "status": "Completed",
+      "technologies": ["React", "MUI", "Node.js", "MongoDB", "Mongoose ORM", "Express.js", "Redux", "Socket.io", "RabbitMQ", "Vercel", "Render"],
       "link": "https://mem-client-side-service.vercel.app/posts"
     },
     {
       "id": 2,
       "name": "Play-O-Time",
-      "summary": "Game Bookings Note App",
+      "summary": "Sports event scheduling platform",
+      "description": "A sports event scheduling platform built with Next.js 14 and Next Auth for secure authentication. Integrated a Redis Message Queue that cut game creation time by 60%, and automated database cleanup via cron jobs to remove outdated game data and reduce storage costs.",
       "deployement": "Render",
-      "details": "Further details about Project Beta, including objectives, milestones, and team members.",
-      "image": "url_to_project_beta_image.jpg",
       "startDate": "2023-02-01",
       "endDate": "Present",
       "status": "In Progress",
-      "technologies": [
-        "Next-JS-14",
-        "MUI",
-        "Next-auth",
-        "Redux-Toolkit-Query",
-        "MongoDB",
-        "Mongoose ORM",
-        "Cron-job.org"
-      ],
-      "link": "https://asia-play-o-time.onrender.com/login"
+      "technologies": ["Next.js 14", "MUI", "Next-auth", "RTK Query", "MongoDB", "Redis", "Mongoose ORM", "Cron-job.org", "Render"],
+      "link": "https://game-poll.vercel.app/login"
     },
     {
       "id": 3,
       "name": "Prompt-O-Verse",
-      "summary": "Saved Your AI generated Prompt in your profile.",
-      "description": "A detailed description of Project Gamma.",
-      "details": "Further details about Project Gamma, including objectives, milestones, and team members.",
-      "image": "url_to_project_gamma_image.jpg",
+      "summary": "AI prompt sharing & discovery app",
+      "description": "A prompt-sharing app built with Next.js 13 leveraging both server and client components for optimized rendering. Users authenticate via Google OAuth, create AI prompts tagged with hashtags, and can search, copy, and browse other users' prompts.",
+      "deployement": "Vercel",
       "startDate": "2023-03-01",
       "endDate": "2023-10-31",
-      "status": "Planning",
-      "technologies": ["Next.js", "MongoDB", "Mongoose ORM", "Next-auth"]
+      "status": "Completed",
+      "technologies": ["Next.js 13", "MongoDB", "Mongoose ORM", "Next-auth"],
+      "link": "https://propmpto-verse.vercel.app/"
     }
   ]
 }

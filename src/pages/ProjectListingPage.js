@@ -1,63 +1,118 @@
-import React from "react";
-import { Container, Typography, Grid, Card, CardContent } from "@mui/material";
-import { Link } from "react-router-dom";
-import projectsData from "../static/projectsData.json";
-import MuiHeading from "../components/mui/MuiHeading";
+import { keyframes } from "@emotion/react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/system";
+import React from "react";
+import { Link } from "react-router-dom";
+import MuiHeading from "../components/mui/MuiHeading";
+import projectsData from "../static/projectsData.json";
 
-const styles = {
-  cardContainer: {
-    backgroundColor: "#111",
-    color: "#fff",
-    marginBottom: 1,
-    // border: "none",
-    background: "rgb(185 183 183 / 5%)" /* Transparent white background */,
-    backdropFilter: "blur(15px)" /* Blur effect */,
-    borderRadius: "15px" /* Optional: rounded corners */,
-    padding: "20px" /* Optional: padding inside the card */,
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.5)",
-    border: "1px solid rgba(255, 255, 255, 0.2)",
-    display: "flex",
-    justifyContent: "space-between",
-    cursor: "pointer",
+const rotateBorder = keyframes`
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+`;
+
+const CardWrapper = styled(Box)({
+  position: "relative",
+  borderRadius: "16px",
+  padding: "1px",
+  overflow: "hidden",
+  marginBottom: "12px",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    width: "200%",
+    height: "200%",
+    top: "-50%",
+    left: "-50%",
+    background:
+      "conic-gradient(from 0deg, transparent 0%, transparent 65%, rgba(255,255,255,0.55) 80%, transparent 95%)",
+    animation: `${rotateBorder} 8s linear infinite`,
   },
-  link: {
-    textDecoration: "none",
-    color: "white",
+});
+
+const CardBody = styled(Box)({
+  position: "relative",
+  background: "#1a1a1a",
+  borderRadius: "15px",
+  padding: "20px 24px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  transition: "background 0.25s",
+  "&:hover": {
+    background: "#1f1f1f",
   },
-};
+});
+
+const TopRow = styled(Box)({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+});
+
+const TechChip = styled(Box)({
+  display: "inline-block",
+  padding: "3px 10px",
+  borderRadius: "999px",
+  border: "1px solid rgba(255,255,255,0.15)",
+  background: "rgba(255,255,255,0.04)",
+  color: "rgba(255,255,255,0.6)",
+  fontSize: "0.72rem",
+  fontFamily: "Montserrat",
+  marginRight: "6px",
+  marginTop: "6px",
+});
 
 const ProjectListingPage = () => {
   return (
-    <Container>
+    <Box sx={{ paddingTop: "1rem" }}>
       <MuiHeading>Projects</MuiHeading>
-      <Grid container spacing={1}>
-        {projectsData.projects.map((project, index) => (
-          <Grid item xs={12} key={`${project.id}-${index}`}>
-            <Link
-              to={`/project/${project.id}`}
-              style={styles.link}
-              rel="noopener noreferrer"
-            >
-              <Card variant="outlined" sx={styles.cardContainer}>
-                <CardContent
-                  sx={{
-                    padding: 0,
-                    paddingBottom: "0 !important",
-                  }}
+      {projectsData.projects.map((project) => (
+        <Link
+          key={project.id}
+          to={`/project/${project.id}`}
+          style={{ textDecoration: "none", color: "white", display: "block" }}
+        >
+          <CardWrapper>
+            <CardBody>
+              <TopRow>
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: 600, color: "#fff", lineHeight: 1.3 }}
                 >
-                  <Typography variant="h5" gutterBottom>
-                    {project.name}
-                  </Typography>
-                  <Typography variant="body2">{project.summary}</Typography>
-                </CardContent>
-                <ArrowOutwardIcon />
-              </Card>
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+                  {project.name}
+                </Typography>
+                <ArrowOutwardIcon
+                  sx={{ color: "rgba(255,255,255,0.5)", flexShrink: 0, mt: "4px" }}
+                />
+              </TopRow>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "rgba(255,255,255,0.65)",
+                  lineHeight: 1.7,
+                  fontSize: "0.88rem",
+                  fontFamily: "Montserrat",
+                }}
+              >
+                {project.description}
+              </Typography>
+
+              <Box sx={{ mt: "2px" }}>
+                {project.technologies.slice(0, 5).map((tech) => (
+                  <TechChip key={tech}>{tech}</TechChip>
+                ))}
+                {project.technologies.length > 5 && (
+                  <TechChip>+{project.technologies.length - 5} more</TechChip>
+                )}
+              </Box>
+            </CardBody>
+          </CardWrapper>
+        </Link>
+      ))}
+    </Box>
   );
 };
 

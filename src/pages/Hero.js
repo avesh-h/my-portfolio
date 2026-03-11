@@ -10,6 +10,7 @@ import { personalDetails } from "../static/profileSection";
 import AboutPage from "./AboutPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
+import TechStackPage from "./TechStackPage";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -108,14 +109,18 @@ const PersonalDetails = styled("div")(({ theme }) => ({
   },
 }));
 
+const menuButtons = ["about", "experience", "projects", "stack"];
+
 const Hero = () => {
   const [isMenuHover, setIsMenuHover] = useState({
     about: false,
-    projects: false,
     experience: false,
+    projects: false,
+    stack: false,
   });
 
   const currentSectionRef = useRef({});
+  const containerRef = useRef(null);
 
   const { setIsSpotlightVisiblity, isLargeScreen } = useSpotlightContext();
 
@@ -126,66 +131,56 @@ const Hero = () => {
     }));
   };
 
-  const menuButtons = ["about", "experience", "projects"];
-
   const handleMenuClick = (menu) => {
     setIsSpotlightVisiblity(false);
     currentSectionRef?.current?.[menu]?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+    const container = containerRef.current;
+    if (!container) return;
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        console.log("entry", entry.target.id);
-        if (entry.isIntersecting) {
-          setIsMenuHover((prev) => {
-            if (entry.target.id === "about") {
-              return {
-                about: true,
-                experience: false,
-                projects: false,
-              };
-            } else if (entry.target.id === "experience") {
-              return {
-                about: false,
-                experience: true,
-                projects: false,
-              };
-            } else {
-              return {
-                about: false,
-                experience: false,
-                projects: true,
-              };
-            }
-          });
+    const handleScroll = () => {
+      // If scrolled to the bottom, activate the last section
+      const isAtBottom =
+        container.scrollTop + container.clientHeight >= container.scrollHeight - 50;
+
+      if (isAtBottom) {
+        setIsMenuHover({ about: false, experience: false, projects: false, stack: true });
+        return;
+      }
+
+      // Trigger point: 30% from the top of the scroll container
+      const triggerPoint =
+        container.getBoundingClientRect().top + container.clientHeight * 0.3;
+
+      const sections = Object.entries(currentSectionRef.current);
+      let activeSection = "about";
+
+      for (const [id, el] of sections) {
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerPoint) {
+          activeSection = id;
         }
+      }
+
+      setIsMenuHover({
+        about: activeSection === "about",
+        experience: activeSection === "experience",
+        projects: activeSection === "projects",
+        stack: activeSection === "stack",
       });
     };
 
-    // The Intersection Observer API lets code register a callback function that is executed whenever a particular element enters or exits an intersection with another element (or the viewport)
+    container.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    const observer = new IntersectionObserver(observerCallback, options);
-
-    //Get array of all span elements
-    const sections = Object.values(currentSectionRef.current);
-
-    //Then observe and it watch that when the your element will intersect with root element that you mentioned.
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <LeftSide>
         <PersonalDetails>
           <MuiHeading
@@ -268,6 +263,12 @@ const Hero = () => {
             ref={(ele) => (currentSectionRef.current["projects"] = ele)}
           >
             <ProjectListingPage />
+          </span>
+          <span
+            id="stack"
+            ref={(ele) => (currentSectionRef.current["stack"] = ele)}
+          >
+            <TechStackPage />
           </span>
         </Box>
       </RightSide>

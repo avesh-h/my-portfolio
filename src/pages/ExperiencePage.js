@@ -53,7 +53,17 @@ const ExperiencePage = () => {
           {/* <MuiParagraph>{experience.description}</MuiParagraph> */}
           <Responsibilities>
             {experience.responsibilities.map((responsibility, i) => (
-              <li key={i}>{responsibility}</li>
+              <li key={i}>
+                {responsibility.split(/(\*\*[^*]+\*\*)/).map((part, j) =>
+                  part.startsWith("**") && part.endsWith("**") ? (
+                    <strong key={j} style={{ fontWeight: "600", color: "#e2e8f0" }}>
+                      {part.slice(2, -2)}
+                    </strong>
+                  ) : (
+                    part
+                  )
+                )}
+              </li>
             ))}
           </Responsibilities>
         </ExperienceItem>
