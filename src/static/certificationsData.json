@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "JavaScript Algorithms and Data Structures",
+    "issuer": "freeCodeCamp",
+    "date": "March 19, 2023",
+    "image": "",
+    "url": "https://www.freecodecamp.org/certification/avesh_hasanfatta/javascript-algorithms-and-data-structures",
+    "description": "This certification validated my foundational understanding of JavaScript programming including algorithms, data structures, and problem-solving skills. I demonstrated proficiency in core JavaScript concepts essential for any modern web development role.",
+    "keyPoints": [
+      "Core JavaScript fundamentals and ES6+ features",
+      "Algorithm scripting and problem-solving techniques",
+      "Data structures including arrays, objects, stacks, and queues",
+      "Functional programming paradigms in JavaScript"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Claude Code in Action",
+    "issuer": "Anthropic",
+    "date": "March 23, 2026",
+    "image": "",
+    "url": "https://drive.google.com/file/d/1WTLPVNeF8Ed98uj7aOfOWFNwEcFox-4h/view?usp=sharing",
+    "description": "This certification validates my proficiency in using Claude Code, Anthropic's AI-powered coding assistant. Through practical exercises and real-world applications, I demonstrated the ability to leverage Claude Code effectively for software development tasks, debugging, code review, and building production-ready applications.",
+    "keyPoints": [
+      "Efficient AI-assisted development workflows using Claude Code",
+      "Building and deploying production applications with AI assistance",
+      "Code review and debugging using AI-powered tools",
+      "Best practices for human-AI collaboration in software development"
+    ]
+  }
+]

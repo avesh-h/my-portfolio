@@ -50,7 +50,6 @@ const ExperiencePage = () => {
           <JobTitle>{experience.title}</JobTitle>
           <Company>{experience.company}</Company>
           <Duration>{experience.duration}</Duration>
-          {/* <MuiParagraph>{experience.description}</MuiParagraph> */}
           <Responsibilities>
             {experience.responsibilities.map((responsibility, i) => (
               <li key={i}>

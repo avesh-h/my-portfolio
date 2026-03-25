@@ -1,40 +1,74 @@
 {
   "projects": [
     {
+      "id": 5,
+      "name": "EKKE E-Commerce Website",
+      "summary": "Premium e-commerce platform on Fynd",
+      "description": "Built and delivered a comprehensive e-commerce solution for EKKE on the Fynd platform, featuring PDP, Homepage, PLP, payment integration, and OMS modules with dynamic page design and reusable component architecture.",
+      "highlights": [
+        "Developed **Product Detail Pages (PDP)** and **Product Listing Pages (PLP)** with dynamic content management via Fynd Admin Panel.",
+        "Integrated **payment gateway** with Juspay for seamless checkout experience and transaction handling.",
+        "Built and customized **Cart, Checkout, Auth, and OMS modules** with dynamic page design and reusable theme components."
+      ],
+      "startDate": "2025",
+      "endDate": "2025",
+      "status": "Completed",
+      "technologies": ["Fynd Platform", "Juspay", "GraphQL", "React", "Theme Hooks", "OMS", "Fynd Admin Panel", "Less-CSS"],
+      "link": "https://ekke.co/",
+      "image": "/Image/EKKE.png"
+    },
+    {
+      "id": 4,
+      "name": "Coach E-Commerce Website",
+      "summary": "E-commerce platform on Fynd",
+      "description": "Built and delivered a comprehensive e-commerce solution for Coach.co.za on the Fynd platform, implementing AI-powered development tools, dynamic page management, and reusable component architecture.",
+      "highlights": [
+        "Engineered an **AI Skill + script** from scratch using an **AI agent** to eliminate manual overhead of cloning theme copies and copy-pasting default component files.",
+        "Built and customized **Cart, Checkout, Auth, and OMS modules** with dynamic page design, integrating with the **Fynd Admin Panel**.",
+        "Developed multiple **reusable UI sections and pages** leveraging existing **theme hooks** and **commerce utilities**."
+      ],
+      "startDate": "November 2025",
+      "endDate": "March 2026",
+      "status": "Completed",
+      "technologies": ["Fynd Platform", "AI Agents", "GraphQL", "React", "Theme Hooks", "OMS", "Fynd Admin Panel","Less-CSS"],
+      "link": "https://coach.co.za/",
+      "image": "/Image/Coach.png"
+    },
+    {
       "id": 1,
       "name": "Memories App",
       "summary": "Full-stack social networking platform",
       "description": "A full-stack social networking platform built with a microservices architecture (Post, Chat, Mail, User services) using RabbitMQ for async task delegation. Features real-time chat and group messaging via Socket.io, along with standard social interactions — posts, likes, and comments.",
-      "deployement": "Vercel",
       "startDate": "2023-01-01",
       "endDate": "2023-12-31",
       "status": "Completed",
       "technologies": ["React", "MUI", "Node.js", "MongoDB", "Mongoose ORM", "Express.js", "Redux", "Socket.io", "RabbitMQ", "Vercel", "Render"],
-      "link": "https://mem-client-side-service.vercel.app/posts"
+      "link": "https://mem-client-side-service.vercel.app/posts",
+      "iframeUrl": "https://mem-client-side-service.vercel.app/posts"
     },
     {
       "id": 2,
       "name": "Play-O-Time",
       "summary": "Sports event scheduling platform",
       "description": "A sports event scheduling platform built with Next.js 14 and Next Auth for secure authentication. Integrated a Redis Message Queue that cut game creation time by 60%, and automated database cleanup via cron jobs to remove outdated game data and reduce storage costs.",
-      "deployement": "Render",
       "startDate": "2023-02-01",
       "endDate": "Present",
       "status": "In Progress",
       "technologies": ["Next.js 14", "MUI", "Next-auth", "RTK Query", "MongoDB", "Redis", "Mongoose ORM", "Cron-job.org", "Render"],
-      "link": "https://game-poll.vercel.app/login"
+      "link": "https://game-poll.vercel.app/login",
+      "iframeUrl": "https://game-poll.vercel.app/login"
     },
     {
       "id": 3,
       "name": "Prompt-O-Verse",
       "summary": "AI prompt sharing & discovery app",
       "description": "A prompt-sharing app built with Next.js 13 leveraging both server and client components for optimized rendering. Users authenticate via Google OAuth, create AI prompts tagged with hashtags, and can search, copy, and browse other users' prompts.",
-      "deployement": "Vercel",
       "startDate": "2023-03-01",
       "endDate": "2023-10-31",
       "status": "Completed",
       "technologies": ["Next.js 13", "MongoDB", "Mongoose ORM", "Next-auth"],
-      "link": "https://propmpto-verse.vercel.app/"
+      "link": "https://propmpto-verse.vercel.app/",
+      "iframeUrl": "https://propmpto-verse.vercel.app/"
     }
   ]
 }

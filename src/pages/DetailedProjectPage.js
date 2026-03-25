@@ -1,6 +1,6 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LaunchIcon from "@mui/icons-material/Launch";
-import { Box, Chip, IconButton, Typography } from "@mui/material";
+import { Box, Chip, IconButton, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +23,7 @@ const renderHighlight = (text, index) =>
 
 const DetailedProjectPage = ({ project }) => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:599px)");
 
   return (
     <Box
@@ -30,24 +31,38 @@ const DetailedProjectPage = ({ project }) => {
         minHeight: "100vh",
         background: "#111",
         color: "white",
-        padding: { xs: "1.5rem 1rem", sm: "2.5rem 4rem", md: "3rem 8rem" },
+        px: { xs: 2, sm: 4, md: 8 },
+        py: { xs: 2, sm: 4, md: 6 },
       }}
     >
       {/* Back button */}
-      <IconButton
-        onClick={() => navigate(-1)}
-        sx={{ color: "rgba(255,255,255,0.5)", mb: 3, pl: 0, "&:hover": { color: "#fff" } }}
-      >
-        <ArrowBackIcon sx={{ mr: 0.5 }} />
-        <Typography variant="body2" sx={{ fontFamily: "Montserrat" }}>
-          Back
-        </Typography>
-      </IconButton>
+      <Box sx={{ maxWidth: 900, mx: "auto" }}>
+        <IconButton
+          onClick={() => navigate(-1)}
+          sx={{ color: "rgba(255,255,255,0.5)", mb: 2, pl: 0, "&:hover": { color: "#fff" } }}
+        >
+          <ArrowBackIcon sx={{ mr: 0.5 }} />
+          <Typography variant="body2" sx={{ fontFamily: "Montserrat" }}>
+            Back
+          </Typography>
+        </IconButton>
+      </Box>
 
-      <Box sx={{ maxWidth: 760 }}>
+      <Box sx={{ maxWidth: 900, mx: "auto" }}>
         {/* Title + link */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1 }}>
-          <Typography variant="h3" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "flex-start", sm: "center" },
+            gap: { xs: 1, sm: 1.5 },
+            mb: 1,
+          }}
+        >
+          <Typography
+            variant={isMobile ? "h4" : "h3"}
+            sx={{ fontWeight: 700, lineHeight: 1.2, wordBreak: "break-word" }}
+          >
             {project.name}
           </Typography>
           {project.link && (
@@ -66,7 +81,12 @@ const DetailedProjectPage = ({ project }) => {
         {/* Status + dates */}
         <Typography
           variant="body2"
-          sx={{ color: "rgba(255,255,255,0.4)", mb: 3, fontFamily: "Montserrat" }}
+          sx={{
+            color: "rgba(255,255,255,0.4)",
+            mb: 3,
+            fontFamily: "Montserrat",
+            fontSize: { xs: "0.75rem", sm: "0.875rem" },
+          }}
         >
           {project.startDate} — {project.endDate} &nbsp;·&nbsp;
           <span
@@ -78,21 +98,80 @@ const DetailedProjectPage = ({ project }) => {
           </span>
         </Typography>
 
-        {/* Project image */}
-        {project.image && (
+        {/* Live Preview - Show image if available, otherwise iframe */}
+        {(project.image || project.iframeUrl) && (
           <Box
             sx={{
               mb: 4,
               borderRadius: "12px",
               overflow: "hidden",
               border: "1px solid rgba(255,255,255,0.08)",
+              position: "relative",
             }}
           >
-            <img
-              src={project.image}
-              alt={project.name}
-              style={{ width: "100%", maxHeight: 320, objectFit: "cover", display: "block" }}
-            />
+            {project.image ? (
+              <Box>
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  style={{
+                    width: "100%",
+                    maxHeight: 400,
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+                {project.link && (
+                  <Box
+                    sx={{
+                      p: 2,
+                      background: "rgba(255,255,255,0.05)",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Box
+                      component="a"
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 1,
+                        px: 3,
+                        py: 1.5,
+                        border: "1px solid rgba(255,255,255,0.3)",
+                        borderRadius: "8px",
+                        color: "#fff",
+                        fontFamily: "Montserrat",
+                        fontSize: "0.85rem",
+                        textDecoration: "none",
+                        "&:hover": {
+                          border: "1px solid rgba(255,255,255,0.6)",
+                          background: "rgba(255,255,255,0.05)",
+                        },
+                      }}
+                    >
+                      Open Project ↗
+                    </Box>
+                  </Box>
+                )}
+              </Box>
+            ) : project.iframeUrl ? (
+              <Box
+                component="iframe"
+                src={project.iframeUrl}
+                title={`${project.name} live preview`}
+                sx={{
+                  width: "100%",
+                  height: { xs: 300, sm: 400, md: 500 },
+                  border: "none",
+                  display: "block",
+                }}
+                sandbox="allow-scripts allow-same-origin allow-forms"
+              />
+            ) : null}
           </Box>
         )}
 

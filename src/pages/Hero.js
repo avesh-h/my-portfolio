@@ -8,6 +8,7 @@ import MuiParagraph from "../components/mui/MuiParagraph";
 import { useSpotlightContext } from "../components/SpotlightWrapper";
 import { personalDetails } from "../static/profileSection";
 import AboutPage from "./AboutPage";
+import CertificationsPage from "./CertificationsPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
 import TechStackPage from "./TechStackPage";
@@ -109,13 +110,14 @@ const PersonalDetails = styled("div")(({ theme }) => ({
   },
 }));
 
-const menuButtons = ["about", "experience", "projects", "stack"];
+const menuButtons = ["about", "experience", "projects", "certifications", "stack"];
 
 const Hero = () => {
   const [isMenuHover, setIsMenuHover] = useState({
     about: false,
     experience: false,
     projects: false,
+    certifications: false,
     stack: false,
   });
 
@@ -141,16 +143,14 @@ const Hero = () => {
     if (!container) return;
 
     const handleScroll = () => {
-      // If scrolled to the bottom, activate the last section
       const isAtBottom =
         container.scrollTop + container.clientHeight >= container.scrollHeight - 50;
 
       if (isAtBottom) {
-        setIsMenuHover({ about: false, experience: false, projects: false, stack: true });
+        setIsMenuHover({ about: false, experience: false, projects: false, certifications: false, stack: true });
         return;
       }
 
-      // Trigger point: 30% from the top of the scroll container
       const triggerPoint =
         container.getBoundingClientRect().top + container.clientHeight * 0.3;
 
@@ -169,6 +169,7 @@ const Hero = () => {
         about: activeSection === "about",
         experience: activeSection === "experience",
         projects: activeSection === "projects",
+        certifications: activeSection === "certifications",
         stack: activeSection === "stack",
       });
     };
@@ -263,6 +264,12 @@ const Hero = () => {
             ref={(ele) => (currentSectionRef.current["projects"] = ele)}
           >
             <ProjectListingPage />
+          </span>
+          <span
+            id="certifications"
+            ref={(ele) => (currentSectionRef.current["certifications"] = ele)}
+          >
+            <CertificationsPage />
           </span>
           <span
             id="stack"

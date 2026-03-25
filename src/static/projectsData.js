@@ -5,6 +5,59 @@ import playoverse from "../assets/images/playo-time.png";
 export const projectsContent = {
   projects: [
     {
+      id: 5,
+      name: "EKKE E-Commerce Website",
+      summary: "Premium e-commerce platform on Fynd",
+      description:
+        "Built and delivered a comprehensive e-commerce solution for EKKE on the Fynd platform, featuring PDP, Homepage, PLP, payment integration, and OMS modules with dynamic page design and reusable component architecture.",
+      highlights: [
+        "Developed **Product Detail Pages (PDP)** and **Product Listing Pages (PLP)** with dynamic content management via Fynd Admin Panel.",
+        "Integrated **payment gateway** with Juspay for seamless checkout experience and transaction handling.",
+        "Built and customized **Cart, Checkout, Auth, and OMS modules** with dynamic page design and reusable theme components.",
+      ],
+      image: "/Image/EKKE.png",
+      startDate: "2024",
+      endDate: "Present",
+      status: "Completed",
+      technologies: [
+        "Fynd Platform",
+        "Juspay",
+        "GraphQL",
+        "React",
+        "Theme Hooks",
+        "OMS",
+        "Fynd Admin Panel",
+        "Less-CSS",
+      ],
+      link: "https://ekke.co/",
+    },
+    {
+      id: 4,
+      name: "Coach E-Commerce Platform",
+      summary: "AI-powered e-commerce platform on Fynd",
+      description:
+        "Built and delivered a comprehensive e-commerce solution for Coach.co.za on the Fynd platform, implementing AI-powered development tools, dynamic page management, and reusable component architecture.",
+      highlights: [
+        "Engineered an **AI Skill + script** from scratch using an **AI agent** to eliminate manual overhead of cloning theme copies and copy-pasting default component files. The agent fetches any default theme component's full code on demand, or in create mode, auto-generates the file with the overridden component in the correct location.",
+        "Built and customized **Cart, Checkout, Auth, and OMS modules** with dynamic page design, integrating with the **Fynd Admin Panel** to enable content management without code changes.",
+        "Developed multiple **reusable UI sections and pages** leveraging existing **theme hooks** and **commerce utilities** to maintain core e-commerce logic while enabling rapid feature development.",
+      ],
+      image: "/Image/Coach.png",
+      startDate: "Feb 2025",
+      endDate: "Present",
+      status: "Completed",
+      technologies: [
+        "Fynd Platform",
+        "AI Agents",
+        "Juspay",
+        "React",
+        "Theme Hooks",
+        "OMS",
+        "Fynd Admin Panel",
+      ],
+      link: "https://coach.co.za/",
+    },
+    {
       id: 1,
       name: "Memories App",
       summary: "Full-stack social networking platform",
@@ -33,6 +86,7 @@ export const projectsContent = {
         "Render",
       ],
       link: "https://mem-client-side-service.vercel.app/posts",
+      iframeUrl: "https://mem-client-side-service.vercel.app/posts",
     },
     {
       id: 2,
@@ -61,6 +115,7 @@ export const projectsContent = {
         "Render",
       ],
       link: "https://game-poll.vercel.app/login",
+      iframeUrl: "https://game-poll.vercel.app/login",
     },
     {
       id: 3,
@@ -79,6 +134,7 @@ export const projectsContent = {
       status: "Completed",
       technologies: ["Next.js 13", "MongoDB", "Mongoose ORM", "Next-auth"],
       link: "https://propmpto-verse.vercel.app/",
+      iframeUrl: "https://propmpto-verse.vercel.app/",
     },
   ],
 };
