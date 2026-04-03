@@ -12,6 +12,7 @@ import CertificationsPage from "./CertificationsPage";
 import ExperiencePage from "./ExperiencePage";
 import ProjectListingPage from "./ProjectListingPage";
 import TechStackPage from "./TechStackPage";
+// import AnimatedBackground from "../components/AnimatedBackground";
 
 const buttonStyles = {
   fontFamily: "inherit",
@@ -23,7 +24,7 @@ const buttonStyles = {
 
 const Container = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
-  background: "#111",
+  background: "transparent", 
   display: "flex",
   justifyContent: "center",
   position: "relative",
@@ -51,6 +52,7 @@ const LeftSide = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   position: "sticky",
   top: 0,
+  zIndex: 1,          // ADD THIS
   [theme.breakpoints.down("sm")]: {
     padding: "0.5rem",
   },
@@ -58,6 +60,8 @@ const LeftSide = styled(Box)(({ theme }) => ({
 
 const RightSide = styled(Box)(({ theme }) => ({
   flex: "1 0 50%",
+  position: "relative",   // ADD THIS
+  zIndex: 1,              // ADD THIS
   [theme.breakpoints.down("md")]: {
     padding: "0.5rem",
     maxHeight: "fit-content",
@@ -182,6 +186,7 @@ const Hero = () => {
 
   return (
     <Container ref={containerRef}>
+      {/* <AnimatedBackground /> */}
       <LeftSide>
         <PersonalDetails>
           <MuiHeading

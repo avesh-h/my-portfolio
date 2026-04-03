@@ -18,31 +18,28 @@ const CardWrapper = styled(Box)({
   padding: "1px",
   overflow: "hidden",
   marginBottom: "12px",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    width: "200%",
-    height: "200%",
-    top: "-50%",
-    left: "-50%",
-    background:
-      "conic-gradient(from 0deg, transparent 0%, transparent 65%, rgba(255,255,255,0.55) 80%, transparent 95%)",
-    animation: `${rotateBorder} 8s linear infinite`,
-  },
+  // "&::before": {
+  //   content: '""',
+  //   position: "absolute",
+  //   width: "200%",
+  //   height: "200%",
+  //   top: "-50%",
+  //   left: "-50%",
+  //   background:
+  //     "conic-gradient(from 0deg, transparent 0%, transparent 65%, rgba(255,255,255,0.55) 80%, transparent 95%)",
+  //   animation: `${rotateBorder} 8s linear infinite`,
+  // },
 });
 
 const CardBody = styled(Box)({
   position: "relative",
-  background: "#1a1a1a",
+  background: "transparent",
   borderRadius: "15px",
   padding: "20px 24px",
   display: "flex",
   flexDirection: "column",
   gap: "10px",
-  transition: "background 0.25s",
-  "&:hover": {
-    background: "#1f1f1f",
-  },
+  border: "1px solid rgba(255, 255, 255, 0.36)",
 });
 
 const TopRow = styled(Box)({

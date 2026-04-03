@@ -4,11 +4,13 @@ import { CssBaseline } from "@mui/material";
 import Hero from "./pages/Hero";
 import DetailedProjectPageWrapper from "./pages/DetailedProjectPageWrapper";
 import CertificateDetailPage from "./pages/CertificateDetailPage";
+import AnimatedBackground from "./components/AnimatedBackground"; // ADD
 
 const App = () => {
   return (
     <Router>
       <CssBaseline />
+      <AnimatedBackground /> {/* ADD — renders once, fixed globally */}
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route
