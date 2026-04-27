@@ -1,6 +1,40 @@
 {
   "projects": [
     {
+  "id": 6,
+  "name": "Sift-AI - RAG PDF Chat & AI Search Platform",
+  "summary": "AI-powered document intelligence and web search platform",
+  "description": "A full-stack AI platform built with Next.js 16 that allows users to upload PDFs and chat with them using Retrieval-Augmented Generation (RAG). Also includes a Perplexity-style AI web search with real-time streaming responses and semantic document search using vector embeddings.",
+  "highlights": [
+    "Implemented **RAG pipeline** using Neon PostgreSQL + pgvector to enable semantic search and accurate Q&A over uploaded PDFs.",
+    "Built **Document Chat and AI Search** features powered by Groq Llama-3.3-70B and Tavily API for real-time AI research.",
+    "Integrated **PDF extraction, chunking, and embeddings** using unpdf, LangChain, and OpenAI text-embedding-3-small model.",
+    "Developed **modern responsive UI** with shadcn/ui, Tailwind CSS v4, dark mode, and mobile-first layout.",
+    "Implemented **real-time streaming responses** using Vercel AI SDK for fast AI interaction.",
+    "Added **authentication and file management system** with NextAuth.js v5, PDF upload, selection, and deletion support."
+  ],
+  "startDate": "2025",
+  "endDate": "Present",
+  "status": "Completed",
+  "technologies": [
+    "Next.js 16",
+    "React 19",
+    "Vercel AI SDK",
+    "Groq",
+    "Neon PostgreSQL",
+    "pgvector",
+    "Prisma ORM",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "NextAuth.js",
+    "LangChain",
+    "OpenAI Embeddings",
+    "TypeScript"
+  ],
+  "link": "https://rag-pdf-app-steel.vercel.app/chat",
+  "image": "src/assets/images/rag-1.png"
+},
+    {
       "id": 5,
       "name": "EKKE E-Commerce Website",
       "summary": "Premium e-commerce platform on Fynd",

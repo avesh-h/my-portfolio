@@ -1,6 +1,7 @@
 import mernAppImg from "../assets/images/memories-mern.png";
 import promptoverseApp from "../assets/images/prompto-verse.png";
 import playoverse from "../assets/images/playo-time.png";
+import ragApp from "../assets/images/rag-1.png";
 
 export const projectsContent = {
   projects: [
@@ -135,6 +136,45 @@ export const projectsContent = {
       technologies: ["Next.js 13", "MongoDB", "Mongoose ORM", "Next-auth"],
       link: "https://propmpto-verse.vercel.app/",
       iframeUrl: "https://propmpto-verse.vercel.app/",
+    },
+    {
+      id: 6,
+      name: "Sift-AI - RAG PDF Chat & AI Search Platform",
+      summary:
+        "Full-stack AI-powered document intelligence platform with RAG-based PDF chat and perplexity-style web search",
+      description:
+        "A comprehensive Next.js 16 application enabling users to upload PDF documents, chat with them using Retrieval-Augmented Generation (RAG), and perform AI-powered web searches similar to Perplexity. Features vector embeddings for semantic document search, real-time streaming responses, and a modern responsive UI built with shadcn/ui.",
+      highlights: [
+        "Implemented **RAG (Retrieval-Augmented Generation)** pipeline using Neon PostgreSQL with pgvector for semantic document search, enabling accurate Q&A over uploaded PDFs.",
+        "Built **two AI-powered features**: (1) Document Chat - chat with your PDFs using semantic search, (2) AI Search - perplexity-style web research using Tavily API and Groq LLM.",
+        "Designed **modern responsive UI** with shadcn/ui components, Tailwind CSS v4, dark mode support, and mobile-first layout with collapsible sidebar.",
+        "Integrated **PDF text extraction** using unpdf library, chunking with LangChain, and embedding generation using OpenAI's text-embedding-3-small model (384 dimensions).",
+        "Implemented **real-time streaming** responses using Vercel AI SDK with Groq's Llama-3.3-70b-versatile model for fast inference.",
+        "Added **complete authentication** system with NextAuth.js v5, including login/register pages and protected routes with session management.",
+        "Created **file management system** with upload, selection, and deletion capabilities, auto-selection of recently uploaded files, and cascade deletion of related document chunks.",
+      ],
+      image: ragApp,
+      startDate: "2025",
+      endDate: "Present",
+      status: "Completed",
+      technologies: [
+        "Next.js 16.2.4",
+        "React 19.2.4",
+        "Vercel AI SDK",
+        "Groq (Llama-3.3-70b-versatile)",
+        "Neon PostgreSQL + pgvector",
+        "Prisma ORM",
+        "Tailwind CSS v4",
+        "shadcn/ui",
+        "Radix UI",
+        "NextAuth.js v5",
+        "Tavily API",
+        "OpenAI Embeddings",
+        "unpdf",
+        "LangChain",
+        "TypeScript",
+      ],
+      link: "https://rag-pdf-app-steel.vercel.app/chat",
     },
   ],
 };

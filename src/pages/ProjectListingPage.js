@@ -81,7 +81,11 @@ const ProjectListingPage = () => {
                   {project.name}
                 </Typography>
                 <ArrowOutwardIcon
-                  sx={{ color: "rgba(255,255,255,0.5)", flexShrink: 0, mt: "4px" }}
+                  sx={{
+                    color: "rgba(255,255,255,0.5)",
+                    flexShrink: 0,
+                    mt: "4px",
+                  }}
                 />
               </TopRow>
 
