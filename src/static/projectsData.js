@@ -1,7 +1,7 @@
 import mernAppImg from "../assets/images/memories-mern.png";
 import promptoverseApp from "../assets/images/prompto-verse.png";
 import playoverse from "../assets/images/playo-time.png";
-import ragApp from "../assets/images/rag-1.png";
+import ragApp from "../assets/images/rag-2.png";
 
 export const projectsContent = {
   projects: [
@@ -174,7 +174,7 @@ export const projectsContent = {
         "LangChain",
         "TypeScript",
       ],
-      link: "https://rag-pdf-app-steel.vercel.app/chat",
+      link: "https://rag-pdf-app-steel.vercel.app/",
     },
   ],
 };
