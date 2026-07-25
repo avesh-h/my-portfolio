@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
 import DetailedProjectPage from "./DetailedProjectPage";
+import DetailShell, { Paragraph } from "../components/DetailShell";
 import { projectsContent } from "../static/projectsData.js";
 
 const DetailedProjectPageWrapper = () => {
@@ -11,17 +11,23 @@ const DetailedProjectPageWrapper = () => {
   const project = projectsContent?.projects?.find(
     (p) => p.id === parseInt(projectId, 10)
   );
-  return (
-    <Box sx={{ background: "transparent", minHeight: "100vh" }}>
-      {project ? (
-        <DetailedProjectPage project={project} />
-      ) : (
-        <Typography variant="h6" color="error" sx={{ px: 4, py: 4 }}>
-          Project not found.
-        </Typography>
-      )}
-    </Box>
-  );
+
+  if (!project) {
+    return (
+      <DetailShell
+        pathLabel="~/projects"
+        command={`open projects/${projectId}`}
+        sections={[
+          <Paragraph>
+            <span style={{ color: "#FF6B6B" }}>not found:</span> no project with
+            that id.
+          </Paragraph>,
+        ]}
+      />
+    );
+  }
+
+  return <DetailedProjectPage project={project} />;
 };
 
 export default DetailedProjectPageWrapper;

@@ -1,73 +1,23 @@
-import { Box, styled, useMediaQuery } from "@mui/material";
-import { createContext, useContext, useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { createContext, useContext } from "react";
 
-const Spotlight = styled("div")(({ size }) => {
-  return {
-    position: "absolute",
-    width: size,
-    height: size,
-    borderRadius: "50%",
-    background:
-      "radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 80%)",
-    zIndex: "999",
-    transform: "translate(-50%, -50%)",
-    transition: "transform 0.1s ease-out",
-    pointerEvents: "none",
-  };
+// The mouse "torch" spotlight was removed in favor of a custom premium cursor
+// (see components/CustomCursor.jsx). This now only provides screen-size context
+// that the legacy Hero (/classic) still consumes.
+const SpotlightCtx = createContext({
+  isLargeScreen: true,
+  setIsSpotlightVisiblity: () => {},
 });
 
-const SpotlightCtx = createContext();
-
 export const SpotlightWrapper = ({ children }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isSpotlightVisiblity, setIsSpotlightVisiblity] = useState(true);
-
   const isLargeScreen = useMediaQuery("(min-width:900px)");
-
-  const handleMouseMove = (e) => {
-    if (!isSpotlightVisiblity) {
-      setIsSpotlightVisiblity(true);
-    }
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
   return (
     <SpotlightCtx.Provider
-      value={{ setIsSpotlightVisiblity, isSpotlightVisiblity, isLargeScreen }}
+      value={{ isLargeScreen, setIsSpotlightVisiblity: () => {} }}
     >
-      {isLargeScreen ? (
-        <Box
-          onMouseMove={handleMouseMove}
-          position={"relative"}
-          overflow={"hidden"}
-        >
-          {children}
-          {isSpotlightVisiblity ? (
-            <>
-              <Spotlight
-                size="200px"
-                style={{ top: position.y, left: position.x }}
-              />
-              <Spotlight
-                size="400px"
-                style={{ top: position.y, left: position.x }}
-              />
-              <Spotlight
-                size="600px"
-                style={{ top: position.y, left: position.x }}
-              />
-              <Spotlight
-                size="800px"
-                style={{ top: position.y, left: position.x }}
-              />
-            </>
-          ) : null}
-        </Box>
-      ) : (
-        <>{children}</>
-      )}
+      {children}
     </SpotlightCtx.Provider>
   );
 };
-export const useSpotlightContext = () => {
-  return useContext(SpotlightCtx);
-};
+
+export const useSpotlightContext = () => useContext(SpotlightCtx);

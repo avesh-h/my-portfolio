@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-import Hero from "./pages/Hero";
+import Hero from "./pages/Hero"; // legacy landing — kept for reference at /classic
+import TerminalHome from "./pages/TerminalHome";
 import DetailedProjectPageWrapper from "./pages/DetailedProjectPageWrapper";
 import CertificateDetailPage from "./pages/CertificateDetailPage";
 import AnimatedBackground from "./components/AnimatedBackground"; // ADD
@@ -12,7 +13,8 @@ const App = () => {
       <CssBaseline />
       <AnimatedBackground /> {/* ADD — renders once, fixed globally */}
       <Routes>
-        <Route path="/" element={<Hero />} />
+        <Route path="/" element={<TerminalHome />} />
+        <Route path="/classic" element={<Hero />} />
         <Route
           path={"/project/:projectId"}
           element={<DetailedProjectPageWrapper />}
