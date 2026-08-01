@@ -32,10 +32,6 @@ const COMMANDS = [
 
 const RESET_ALIASES = new Set(["/clear", "/home", "/whoami"]);
 
-// Served from public/resume.pdf → available at /resume.pdf in dev and on Vercel.
-const RESUME_URL = "/resume.pdf";
-const openResume = () => window.open(RESUME_URL, "_blank", "noopener,noreferrer");
-
 /* ----------------------------- motion ----------------------------- */
 const blink = keyframes`0%,49%{opacity:1}50%,100%{opacity:0}`;
 const fadeUp = keyframes`
@@ -99,14 +95,24 @@ const Path = styled("span")({ color: "#7AA2F7", fontWeight: 600 });
 const Tilde = styled("span")({ color: "#7A7D89" });
 const Arrow = styled("span")({ color: "#E8A06B", fontWeight: 700 });
 const Cmd = styled("span")({ color: "#E6E6E3" });
+// Truthful caret: filled + blinking only while the input actually has DOM
+// focus; otherwise a static hollow outline (how a real terminal shows an
+// unfocused window). Driven by the data-focused attribute rather than a
+// custom prop so it forwards to the DOM cleanly (data-* is always allowed).
 const Cursor = styled("span")({
   display: "inline-block",
   width: "9px",
   height: "1.05em",
   marginLeft: "2px",
-  background: "#E8A06B",
   transform: "translateY(2px)",
-  animation: `${blink} 1.05s steps(1) infinite`,
+  '&[data-focused="true"]': {
+    background: "#E8A06B",
+    animation: `${blink} 1.05s steps(1) infinite`,
+  },
+  '&[data-focused="false"]': {
+    background: "transparent",
+    boxShadow: "inset 0 0 0 1.5px #E8A06B",
+  },
 });
 
 /* --------------------------- output ------------------------------- */
@@ -362,7 +368,11 @@ const buildOutput = (command, navigate) => {
       return [
         <SectionTitle key="t">Projects</SectionTitle>,
         ...projectsContent.projects.map((p) => (
-          <ListCard key={p.id} onClick={() => navigate(`/project/${p.id}`)}>
+          <ListCard
+            key={p.id}
+            data-card="true"
+            onClick={() => navigate(`/project/${p.id}`)}
+          >
             <CardTitle>
               <span>{p.name}</span>
               <Muted>↗</Muted>
@@ -403,6 +413,7 @@ const buildOutput = (command, navigate) => {
         ...certificationsData.map((c) => (
           <ListCard
             key={c.id}
+            data-card="true"
             onClick={() => navigate(`/certificate/${c.id}`)}
           >
             <CardTitle>
@@ -438,17 +449,16 @@ const buildOutput = (command, navigate) => {
       return [
         <SectionTitle key="t">Résumé</SectionTitle>,
         <Para key="p">
-          Opening my résumé in a new tab…{" "}
-          <Muted>if your browser blocked it, use the link below.</Muted>
+          Grab the latest copy below. <Muted>(opens in a new tab)</Muted>
         </Para>,
         <LinkRow
           key="dl"
-          href={RESUME_URL}
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Arrow>❯</Arrow>
-          <span className="val">open résumé ↗</span>
+          <span className="val">download résumé.pdf ↗</span>
         </LinkRow>,
       ];
 
@@ -483,17 +493,26 @@ const TerminalHome = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const interactedRef = useRef(false);
+  const wasConnectOpenRef = useRef(false);
   const [command, setCommand] = useState("home");
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [lastRun, setLastRun] = useState("");
   const [connectOpen, setConnectOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const focusInput = () => inputRef.current?.focus();
-  // Never pull focus back to the terminal while the connect modal is open,
-  // otherwise clicking the modal's fields blurs them instantly.
-  const focusInputSafe = () => {
-    if (!connectOpen) focusInput();
+  // Never steal focus back to the terminal when:
+  //  - the connect modal is open (its fields would blur instantly),
+  //  - this is a touch device (would pop the keyboard unexpectedly),
+  //  - the user just finished selecting text (refocusing would clear it),
+  //  - the click landed on something that navigates away (a link or a card).
+  const focusInputSafe = (e) => {
+    if (connectOpen) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.getSelection()?.toString()) return;
+    if (e?.target?.closest?.("a, [data-card]")) return;
+    focusInput();
   };
   const markInteracted = () => {
     interactedRef.current = true;
@@ -525,6 +544,28 @@ const TerminalHome = () => {
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keep the caret honest when the OS window itself loses/regains focus
+  // (alt-tab, clicking the address bar, ...) — the input's own focus/blur
+  // events don't fire for that, so without this the caret would lie.
+  useEffect(() => {
+    const onWindowBlur = () => setIsFocused(false);
+    const onWindowFocus = () =>
+      setIsFocused(document.activeElement === inputRef.current);
+    window.addEventListener("blur", onWindowBlur);
+    window.addEventListener("focus", onWindowFocus);
+    return () => {
+      window.removeEventListener("blur", onWindowBlur);
+      window.removeEventListener("focus", onWindowFocus);
+    };
+  }, []);
+
+  // Return focus to the terminal once the connect modal closes.
+  useEffect(() => {
+    if (wasConnectOpenRef.current && !connectOpen) focusInputSafe();
+    wasConnectOpenRef.current = connectOpen;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [connectOpen]);
 
   const execute = (raw) => {
     const norm = normalize(raw);
@@ -574,8 +615,6 @@ const TerminalHome = () => {
     }
     markInteracted();
     if (e.key === "Enter") {
-      // open the résumé within this real keypress so popup blockers allow it
-      if (normalize(input) === "/resume") openResume();
       execute(input);
     } else if (e.key === "Tab") {
       e.preventDefault();
@@ -593,7 +632,7 @@ const TerminalHome = () => {
 
   return (
     <Screen onClick={focusInputSafe}>
-      <Window onClick={(e) => e.stopPropagation()}>
+      <Window>
         <TitleBar>
           <Dot tone="#FF5F56" />
           <Dot tone="#FFBD2E" />
@@ -624,7 +663,7 @@ const TerminalHome = () => {
             <Tilde>~</Tilde>
             <Arrow>❯</Arrow>
             <Cmd>{input}</Cmd>
-            <Cursor />
+            <Cursor data-focused={isFocused} />
             <HiddenInput
               ref={inputRef}
               value={input}
@@ -637,6 +676,8 @@ const TerminalHome = () => {
                 setInput(e.target.value);
               }}
               onKeyDown={onKeyDown}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
           </PromptRow>
 
@@ -646,8 +687,6 @@ const TerminalHome = () => {
                 key={c.cmd}
                 onClick={() => {
                   markInteracted();
-                  // open the résumé within this real click so it isn't blocked
-                  if (c.cmd === "/resume") openResume();
                   typeAndRun(c.cmd);
                 }}
               >
