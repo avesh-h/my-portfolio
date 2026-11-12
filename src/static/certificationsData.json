@@ -1,5 +1,29 @@
 [
   {
+    "id": 3,
+    "name": "AWS Certified Developer – Associate",
+    "issuer": "Amazon Web Services",
+    "date": "November 4, 2026",
+    "image": "/Image/aws-certi.png",
+    "url": "https://www.credly.com/badges/821c166b-1daf-4a73-9215-a7a535954240/public_url",
+    "description": "Earners of this certification have a comprehensive understanding of application life-cycle management. They demonstrated proficiency in writing applications with AWS service APIs, AWS CLI, and SDKs; using containers; and deploying with a CI/CD pipeline. Badge owners are able to develop, deploy, and debug cloud-based applications that follow AWS best practices.",
+    "keyPoints": [
+      "Proficiency in writing applications with AWS service APIs, AWS CLI, and SDKs",
+      "Application life-cycle management, containerized workflows, and CI/CD pipeline deployment",
+      "Developing, deploying, and debugging cloud-based applications following AWS best practices",
+      "Core AWS services integration, cloud security, and serverless architectures"
+    ],
+    "skills": [
+      "AWS",
+      "AWS Certification",
+      "AWS Cloud",
+      "Amazon Web Services",
+      "Cloud Certification",
+      "Code Deployment",
+      "Code Development"
+    ]
+  },
+  {
     "id": 2,
     "name": "Claude Code in Action",
     "issuer": "Anthropic",

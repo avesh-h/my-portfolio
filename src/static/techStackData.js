@@ -32,6 +32,6 @@ export const techStackData = [
   {
     category: "Deployment & Tools",
     color: "#38bdf8",
-    items: ["Vercel", "Render", "Git", "GitHub", "Postman", "VS Code"],
+    items: ["AWS", "Vercel", "Render", "Git", "GitHub", "Postman", "VS Code"],
   },
 ];

@@ -1,4 +1,3 @@
-import { keyframes } from "@emotion/react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
@@ -7,10 +6,10 @@ import { Link } from "react-router-dom";
 import MuiHeading from "../components/mui/MuiHeading";
 import projectsData from "../static/projectsData.json";
 
-const rotateBorder = keyframes`
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-`;
+// const rotateBorder = keyframes`
+//   from { transform: rotate(0deg); }
+//   to   { transform: rotate(360deg); }
+// `;
 
 const CardWrapper = styled(Box)({
   position: "relative",

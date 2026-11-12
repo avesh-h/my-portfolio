@@ -7,6 +7,7 @@ import DetailShell, {
   SectionLabel,
   Paragraph,
   HighlightList,
+  TechChips,
   BrowserFrame,
 } from "../components/DetailShell";
 import certificationsData from "../static/certificationsData.json";
@@ -71,6 +72,13 @@ const CertificateDetailPage = () => {
       <Box>
         <SectionLabel>Key Learnings</SectionLabel>
         <HighlightList items={certificate.keyPoints} />
+      </Box>
+    ),
+
+    certificate.skills?.length > 0 && (
+      <Box>
+        <SectionLabel>Skills</SectionLabel>
+        <TechChips items={certificate.skills} />
       </Box>
     ),
   ].filter(Boolean);

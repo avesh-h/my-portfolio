@@ -407,6 +407,7 @@ const buildOutput = (command, navigate) => {
         )),
       ];
 
+    case "/certification":
     case "/certifications":
       return [
         <SectionTitle key="t">Certifications</SectionTitle>,
