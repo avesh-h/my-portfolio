@@ -6,12 +6,14 @@ import TerminalHome from "./pages/TerminalHome";
 import DetailedProjectPageWrapper from "./pages/DetailedProjectPageWrapper";
 import CertificateDetailPage from "./pages/CertificateDetailPage";
 import AnimatedBackground from "./components/AnimatedBackground"; // ADD
+import SocialBar from "./components/SocialBar";
 
 const App = () => {
   return (
     <Router>
       <CssBaseline />
       <AnimatedBackground /> {/* ADD — renders once, fixed globally */}
+      <SocialBar />
       <Routes>
         <Route path="/" element={<TerminalHome />} />
         <Route path="/classic" element={<Hero />} />

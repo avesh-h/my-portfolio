@@ -46,17 +46,17 @@ const Screen = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: "1.5rem",
+  padding: "4.5rem 1.5rem 1.5rem", // top room for the fixed SocialBar
   background:
     "radial-gradient(1100px 560px at 50% -12%, rgba(122,162,247,0.10), transparent 60%), rgba(11,12,16,0.70)",
   fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-  [theme.breakpoints.down("sm")]: { padding: "0.85rem" },
+  [theme.breakpoints.down("sm")]: { padding: "4.25rem 0.85rem 0.85rem" },
 }));
 
 const Window = styled(Box)(({ theme }) => ({
   width: "100%",
   maxWidth: "860px",
-  maxHeight: "min(86vh, 760px)",
+  maxHeight: "min(calc(100vh - 6rem), 760px)",
   display: "flex",
   flexDirection: "column",
   borderRadius: "12px",
@@ -66,7 +66,7 @@ const Window = styled(Box)(({ theme }) => ({
   WebkitBackdropFilter: "blur(14px)",
   boxShadow: "0 30px 80px -24px rgba(0,0,0,0.65)",
   overflow: "hidden",
-  [theme.breakpoints.down("sm")]: { maxHeight: "92vh" },
+  [theme.breakpoints.down("sm")]: { maxHeight: "calc(100vh - 5.25rem)" },
 }));
 
 const TitleBar = styled(Box)({

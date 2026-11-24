@@ -22,11 +22,11 @@ const Screen = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "center",
-  padding: "5vh 1.5rem 7vh",
+  padding: "calc(4.5rem + 2vh) 1.5rem 7vh",
   background:
     "radial-gradient(1100px 560px at 50% -12%, rgba(122,162,247,0.10), transparent 60%), rgba(11,12,16,0.70)",
   fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-  [theme.breakpoints.down("sm")]: { padding: "3vh 0.85rem 5vh" },
+  [theme.breakpoints.down("sm")]: { padding: "calc(4.25rem + 1vh) 0.85rem 5vh" },
 }));
 
 const Window = styled(Box)({
@@ -121,6 +121,41 @@ const BackRow = styled("button")({
   "& .muted": { color: "#565963" },
 });
 
+/* Fixed "cd .." pill — always visible while scrolling, mirrors SocialBar's
+ * glass pill on the opposite (left) side. */
+const BackPill = styled("button")({
+  position: "fixed",
+  top: "14px",
+  left: "20px",
+  zIndex: 1200,
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "8px",
+  height: "50px", // same height as the SocialBar pill
+  padding: "0 18px 0 14px",
+  borderRadius: "999px",
+  border: "1px solid rgba(255,255,255,0.08)",
+  background: "rgba(17,19,24,0.72)",
+  backdropFilter: "blur(14px)",
+  WebkitBackdropFilter: "blur(14px)",
+  boxShadow: "0 10px 30px -12px rgba(0,0,0,0.6)",
+  color: "#C7C9D1",
+  fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+  fontSize: "0.85rem",
+  cursor: "pointer",
+  transition: "color .18s ease, border-color .18s ease, background .18s ease",
+  "& .arrow": { color: "#E8A06B", fontWeight: 700, transition: "transform .18s ease" },
+  "&:hover, &:focus-visible": {
+    color: "#F0F0EE",
+    borderColor: "rgba(232,160,107,0.6)",
+    background: "rgba(232,160,107,0.10)",
+    outline: "none",
+  },
+  "&:hover .arrow, &:focus-visible .arrow": { transform: "translateX(-3px)" },
+  "@media (max-width:600px)": { left: "10px", top: "10px" },
+  "@media (max-width:360px)": { padding: "0 12px 0 10px", gap: "6px" },
+});
+
 const DetailShell = ({ pathLabel, command, sections }) => {
   const navigate = useNavigate();
   const goHome = () => navigate("/");
@@ -137,6 +172,10 @@ const DetailShell = ({ pathLabel, command, sections }) => {
 
   return (
     <Screen>
+      <BackPill type="button" onClick={goHome} aria-label="Back to terminal">
+        <span className="arrow">←</span>
+        <span>cd ..</span>
+      </BackPill>
       <Window>
         <TitleBar>
           <Dot tone="#FF5F56" interactive onClick={goHome} aria-label="Back to terminal">
