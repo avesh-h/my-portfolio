@@ -10,6 +10,8 @@ import certificationsData from "../static/certificationsData.json";
 import { techStackData } from "../static/techStackData";
 import { projectsContent } from "../static/projectsData";
 import ConnectModal from "../components/ConnectModal";
+import ModePill from "../components/ModePill";
+import { setMode } from "../utils/mode";
 
 /* ------------------------------------------------------------------ *
  * Interactive terminal landing.
@@ -26,6 +28,7 @@ const COMMANDS = [
   { cmd: "/resume", desc: "grab my résumé" },
   { cmd: "/contact", desc: "get in touch" },
   { cmd: "/connect", desc: "let's work together" },
+  { cmd: "/website", desc: "switch to website view" },
   { cmd: "/help", desc: "list every command" },
   { cmd: "/clear", desc: "back to start" },
 ];
@@ -492,6 +495,9 @@ const buildOutput = (command, navigate) => {
 /* ============================ component ============================ */
 const TerminalHome = () => {
   const navigate = useNavigate();
+
+  // Remember the terminal as the visitor's mode so detail pages go back here.
+  useEffect(() => setMode("terminal"), []);
   const inputRef = useRef(null);
   const interactedRef = useRef(false);
   const wasConnectOpenRef = useRef(false);
@@ -577,6 +583,10 @@ const TerminalHome = () => {
       openConnect();
       return;
     }
+    if (norm === "/website") {
+      navigate("/");
+      return;
+    }
     if (RESET_ALIASES.has(norm)) {
       setCommand("home");
       return;
@@ -633,6 +643,7 @@ const TerminalHome = () => {
 
   return (
     <Screen onClick={focusInputSafe}>
+      <ModePill />
       <Window>
         <TitleBar>
           <Dot tone="#FF5F56" />

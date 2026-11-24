@@ -11,6 +11,8 @@ import DetailShell, {
   BrowserFrame,
 } from "../components/DetailShell";
 import certificationsData from "../static/certificationsData.json";
+import { WebsiteCertificateDetail } from "../components/site/DetailPages";
+import { getMode } from "../utils/mode";
 
 const slugify = (name) =>
   (name || "")
@@ -22,7 +24,7 @@ const slugify = (name) =>
     .slice(0, 3)
     .join("-");
 
-const CertificateDetailPage = () => {
+const TerminalCertificateDetail = () => {
   const { certificateId } = useParams();
   const certificate = certificationsData.find(
     (cert) => cert.id === parseInt(certificateId, 10)
@@ -91,5 +93,12 @@ const CertificateDetailPage = () => {
     />
   );
 };
+
+const CertificateDetailPage = () =>
+  getMode() === "website" ? (
+    <WebsiteCertificateDetail />
+  ) : (
+    <TerminalCertificateDetail />
+  );
 
 export default CertificateDetailPage;

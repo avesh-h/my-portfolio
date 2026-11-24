@@ -3,6 +3,7 @@ import { styled } from "@mui/system";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { personalDetails } from "../static/profileSection";
+import { getMode } from "../utils/mode";
 
 /* Global social links — rendered once in App.jsx so it shows on every route.
  * Fixed pill, top-right on every screen size. Pages reserve
@@ -50,8 +51,11 @@ const IconLink = styled("a")({
 
 const SocialBar = () => {
   const { pathname } = useLocation();
-  // The legacy /classic page already renders its own social icons.
-  if (pathname.startsWith("/classic")) return null;
+  // Only terminal-style pages need the floating pill: the terminal itself and
+  // detail pages opened from it. Website mode has its own nav + social icons.
+  const isDetail = /^\/(project|certificate)\//.test(pathname);
+  const show = pathname === "/terminal" || (isDetail && getMode() === "terminal");
+  if (!show) return null;
 
   return (
     <Bar component="nav" aria-label="Social links">

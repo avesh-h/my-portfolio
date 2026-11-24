@@ -4,7 +4,7 @@ const CONFIG = {
   count: 160,
   connDist: 160,
   mouseDist: 180,
-  lineAlpha: 0.35,
+  lineAlpha: 0.5,
   mouseGlowRadius: 250,
   bgColor: "#0d0d14",
   particleColors: [
@@ -33,7 +33,7 @@ const AnimatedBackground = () => {
         this.vx = (Math.random() - 0.5) * 0.45;
         this.vy = (Math.random() - 0.5) * 0.45;
         this.r = Math.random() * 1.8 + 0.6;
-        this.baseAlpha = Math.random() * 0.5 + 0.35;
+        this.baseAlpha = Math.random() * 0.5 + 0.45;
         this.alpha = this.baseAlpha;
         this.pulse = Math.random() * Math.PI * 2;
         this.pulseSpeed = 0.006 + Math.random() * 0.01;

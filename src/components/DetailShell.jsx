@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getHomePath } from "../utils/mode";
 
 /* ------------------------------------------------------------------ *
  * Shared "expanded Mac window" shell for detail pages (projects,
@@ -158,7 +159,7 @@ const BackPill = styled("button")({
 
 const DetailShell = ({ pathLabel, command, sections }) => {
   const navigate = useNavigate();
-  const goHome = () => navigate("/");
+  const goHome = () => navigate(getHomePath());
 
   useEffect(() => {
     window.scrollTo(0, 0);

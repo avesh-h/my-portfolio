@@ -5,8 +5,10 @@ import { useParams } from "react-router-dom";
 import DetailedProjectPage from "./DetailedProjectPage";
 import DetailShell, { Paragraph } from "../components/DetailShell";
 import { projectsContent } from "../static/projectsData.js";
+import { WebsiteProjectDetail } from "../components/site/DetailPages";
+import { getMode } from "../utils/mode";
 
-const DetailedProjectPageWrapper = () => {
+const TerminalProjectDetail = () => {
   const { projectId } = useParams();
   const project = projectsContent?.projects?.find(
     (p) => p.id === parseInt(projectId, 10)
@@ -29,5 +31,9 @@ const DetailedProjectPageWrapper = () => {
 
   return <DetailedProjectPage project={project} />;
 };
+
+// Website mode (default) gets the polished page; terminal mode keeps the shell.
+const DetailedProjectPageWrapper = () =>
+  getMode() === "website" ? <WebsiteProjectDetail /> : <TerminalProjectDetail />;
 
 export default DetailedProjectPageWrapper;

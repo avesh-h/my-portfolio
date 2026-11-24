@@ -13,3 +13,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Cursor consistency: everything clickable shows the pointer hand, everywhere.
+   (Browsers default <button> to the arrow, which made some controls feel inert.) */
+a[href],
+button:not(:disabled),
+[role="button"],
+summary,
+label[for],
+select,
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
